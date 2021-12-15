@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\Product;
+use App\Models\Cart;
 
-class FrontController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,7 @@ class FrontController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')->latest()->limit(6)->get();
-
-        return view('front', compact('products'));
+        return view('checkout.index');
     }
 
     /**
@@ -38,7 +36,38 @@ class FrontController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!$request->get('product_id')) {
+            return [
+                'message' => 'Product Count',
+                'items' => Cart::where('user_id', auth()->user()->id)->sum('quantity'),
+            ];
+        }
+
+        $product = Product::find($request->get('product_id'));
+
+        $productInCart = Cart::where('product_id', $request->get('product_id'))->pluck('id');
+
+        if($productInCart->isEmpty()) {
+            
+            // Create New Product on Cart
+            $cart = Cart::create([
+                'product_id' => $product->id,
+                'user_id' => auth()->user()->id,
+                'quantity' => 1,
+                'price' => $product->sale_price, 
+            ]);
+        } else {
+
+            // Increment Item Quantity on Cart
+            $cart = Cart::where('product_id', $request->get('product_id'))->increment('quantity');
+        }
+
+        if($cart) {
+            return [
+                'message' => 'Cart Updated',
+                'items' => Cart::where('user_id', auth()->user()->id)->sum('quantity'),
+            ];
+        }
     }
 
     /**

@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\FrontController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,8 +15,10 @@ use App\Http\Controllers\FrontController;
 |
 */
 
-Route::get('/', [FrontController::class, 'index'])->name('front');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::post('/cart', [CartController::class, 'store'])->name('cart');
+Route::get('/checkout', [CartController::class, 'index'])->name('checkout');

@@ -30,6 +30,7 @@ https://templatemo.com/tm-546-sixteen-clothing
     <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
     <link rel="stylesheet" href="assets/css/owl.css">
 
+    @yield('styles')
   </head>
 
   <body>
@@ -45,19 +46,11 @@ https://templatemo.com/tm-546-sixteen-clothing
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    @include('layouts.partials.header')
 
     <!-- Page Content -->
-    <!-- Banner Starts Here -->
-      @include('layouts.partials.banner')
-    <!-- Banner Ends Here -->
-
     @yield('content')
     
-    @include('layouts.partials.best-features')
-
-    @include('layouts.partials.cta')
-    
+    <!-- Page Footer -->
     @include('layouts.partials.footer')
 
     </div>
