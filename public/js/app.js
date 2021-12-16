@@ -5689,10 +5689,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
-      items: []
+      items: [],
+      firstName: '',
+      lastName: '',
+      email: '',
+      address: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      country: '',
+      phoneNo: '',
+      cardType: '',
+      cardCode: '',
+      expirationMonth: '',
+      expirationYear: '',
+      cardNumber: ''
     };
   },
   methods: {
@@ -5719,6 +5734,57 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             }
           }
         }, _callee);
+      }))();
+    },
+    getUserAddress: function getUserAddress() {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                if (!(_this2.firstName != '' && _this2.lastName != '' && _this2.cardNumber && _this2.cardCode)) {
+                  _context2.next = 7;
+                  break;
+                }
+
+                _context2.next = 3;
+                return axios.post('process/user/payment', {
+                  'firstName': _this2.firstName,
+                  'lastName': _this2.lastName,
+                  'email': _this2.email,
+                  'address': _this2.address,
+                  'city': _this2.city,
+                  'state': _this2.state,
+                  'zipCode': _this2.zipCode,
+                  'country': _this2.country,
+                  'phoneNo': _this2.phoneNo,
+                  'cardType': _this2.cardType,
+                  'cardCode': _this2.cardCode,
+                  'expirationMonth': _this2.expirationMonth,
+                  'expirationYear': _this2.expirationYear,
+                  'cardNumber': _this2.cardNumber
+                });
+
+              case 3:
+                response = _context2.sent;
+                console.log(response);
+                _context2.next = 9;
+                break;
+
+              case 7:
+                _this2.$toastr.e('Please complete the form to proceed');
+
+                return _context2.abrupt("return");
+
+              case 9:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
       }))();
     }
   },
@@ -29424,7 +29490,715 @@ var render = function () {
             _vm._m(2),
           ]),
           _vm._v(" "),
-          _vm._m(3),
+          _c(
+            "div",
+            {
+              staticClass: "container wrapper",
+              staticStyle: { "margin-top": "50px", "padding-top": "30px" },
+            },
+            [
+              _vm._m(3),
+              _vm._v(" "),
+              _c("div", { staticClass: "row cart-body" }, [
+                _c(
+                  "form",
+                  {
+                    staticClass: "form-horizontal",
+                    attrs: { method: "post", action: "" },
+                  },
+                  [
+                    _c("div", {
+                      staticClass:
+                        "col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6",
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6",
+                      },
+                      [
+                        _c("div", { staticClass: "panel panel-info" }, [
+                          _c("div", { staticClass: "panel-body" }, [
+                            _vm._m(4),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _vm._m(5),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.country,
+                                      expression: "country",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { type: "text", name: "country" },
+                                  domProps: { value: _vm.country },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.country = $event.target.value
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _c("div", { staticClass: "col-md-6 col-xs-12" }, [
+                                _c("strong", [_vm._v("First Name:")]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.firstName,
+                                      expression: "firstName",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { type: "text", name: "first_name" },
+                                  domProps: { value: _vm.firstName },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.firstName = $event.target.value
+                                    },
+                                  },
+                                }),
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "span1" }),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-6 col-xs-12" }, [
+                                _c("strong", [_vm._v("Last Name:")]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.lastName,
+                                      expression: "lastName",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { type: "text", name: "last_name" },
+                                  domProps: { value: _vm.lastName },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.lastName = $event.target.value
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _vm._m(6),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.address,
+                                      expression: "address",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { type: "text", name: "address" },
+                                  domProps: { value: _vm.address },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.address = $event.target.value
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _vm._m(7),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.city,
+                                      expression: "city",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { type: "text", name: "city" },
+                                  domProps: { value: _vm.city },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.city = $event.target.value
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _vm._m(8),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.state,
+                                      expression: "state",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { type: "text", name: "state" },
+                                  domProps: { value: _vm.state },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.state = $event.target.value
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _vm._m(9),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.zipCode,
+                                      expression: "zipCode",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { type: "text", name: "zip_code" },
+                                  domProps: { value: _vm.zipCode },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.zipCode = $event.target.value
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _vm._m(10),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.phoneNo,
+                                      expression: "phoneNo",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { type: "text", name: "phone_number" },
+                                  domProps: { value: _vm.phoneNo },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.phoneNo = $event.target.value
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "form-group" }, [
+                              _vm._m(11),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col-md-12" }, [
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.email,
+                                      expression: "email",
+                                    },
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: {
+                                    type: "text",
+                                    name: "email_address",
+                                  },
+                                  domProps: { value: _vm.email },
+                                  on: {
+                                    input: function ($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.email = $event.target.value
+                                    },
+                                  },
+                                }),
+                              ]),
+                            ]),
+                          ]),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          {
+                            staticClass: "panel panel-info",
+                            staticStyle: { "margin-top": "50px" },
+                          },
+                          [
+                            _c("div", { staticClass: "panel-body" }, [
+                              _vm._m(12),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "form-group" }, [
+                                _vm._m(13),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-12" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.cardType,
+                                          expression: "cardType",
+                                        },
+                                      ],
+                                      staticClass: "form-control",
+                                      attrs: {
+                                        id: "CreditCardType",
+                                        name: "CreditCardType",
+                                      },
+                                      on: {
+                                        change: function ($event) {
+                                          var $$selectedVal =
+                                            Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function (o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function (o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                          _vm.cardType = $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        },
+                                      },
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "5" } }, [
+                                        _vm._v("Visa"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "6" } }, [
+                                        _vm._v("MasterCard"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "7" } }, [
+                                        _vm._v("American Express"),
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("option", { attrs: { value: "8" } }, [
+                                        _vm._v("Discover"),
+                                      ]),
+                                    ]
+                                  ),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "form-group" }, [
+                                _vm._m(14),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-12" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.cardNumber,
+                                        expression: "cardNumber",
+                                      },
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: { type: "text", name: "car_number" },
+                                    domProps: { value: _vm.cardNumber },
+                                    on: {
+                                      input: function ($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.cardNumber = $event.target.value
+                                      },
+                                    },
+                                  }),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "form-group" }, [
+                                _vm._m(15),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "col-md-12" }, [
+                                  _c("input", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.cardCode,
+                                        expression: "cardCode",
+                                      },
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: { type: "text", name: "car_code" },
+                                    domProps: { value: _vm.cardCode },
+                                    on: {
+                                      input: function ($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.cardCode = $event.target.value
+                                      },
+                                    },
+                                  }),
+                                ]),
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "form-group" }, [
+                                _vm._m(16),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "col-lg-6 col-md-6 col-sm-6 col-xs-12",
+                                  },
+                                  [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.expirationMonth,
+                                            expression: "expirationMonth",
+                                          },
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { name: "" },
+                                        on: {
+                                          change: function ($event) {
+                                            var $$selectedVal =
+                                              Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function (o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function (o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                            _vm.expirationMonth = $event.target
+                                              .multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("option", { attrs: { value: "" } }, [
+                                          _vm._v("Month"),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "01" } },
+                                          [_vm._v("01")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "02" } },
+                                          [_vm._v("02")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "03" } },
+                                          [_vm._v("03")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "04" } },
+                                          [_vm._v("04")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "05" } },
+                                          [_vm._v("05")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "06" } },
+                                          [_vm._v("06")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "07" } },
+                                          [_vm._v("07")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "08" } },
+                                          [_vm._v("08")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "09" } },
+                                          [_vm._v("09")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "10" } },
+                                          [_vm._v("10")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "11" } },
+                                          [_vm._v("11")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "12" } },
+                                          [_vm._v("12")]
+                                        ),
+                                      ]
+                                    ),
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "col-lg-6 col-md-6 col-sm-6 col-xs-12",
+                                  },
+                                  [
+                                    _c(
+                                      "select",
+                                      {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.expirationYear,
+                                            expression: "expirationYear",
+                                          },
+                                        ],
+                                        staticClass: "form-control",
+                                        attrs: { name: "" },
+                                        on: {
+                                          change: function ($event) {
+                                            var $$selectedVal =
+                                              Array.prototype.filter
+                                                .call(
+                                                  $event.target.options,
+                                                  function (o) {
+                                                    return o.selected
+                                                  }
+                                                )
+                                                .map(function (o) {
+                                                  var val =
+                                                    "_value" in o
+                                                      ? o._value
+                                                      : o.value
+                                                  return val
+                                                })
+                                            _vm.expirationYear = $event.target
+                                              .multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          },
+                                        },
+                                      },
+                                      [
+                                        _c("option", { attrs: { value: "" } }, [
+                                          _vm._v("Year"),
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2015" } },
+                                          [_vm._v("2015")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2016" } },
+                                          [_vm._v("2016")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2017" } },
+                                          [_vm._v("2017")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2018" } },
+                                          [_vm._v("2018")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2019" } },
+                                          [_vm._v("2019")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2020" } },
+                                          [_vm._v("2020")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2021" } },
+                                          [_vm._v("2021")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2022" } },
+                                          [_vm._v("2022")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2023" } },
+                                          [_vm._v("2023")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2024" } },
+                                          [_vm._v("2024")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "option",
+                                          { attrs: { value: "2025" } },
+                                          [_vm._v("2025")]
+                                        ),
+                                      ]
+                                    ),
+                                  ]
+                                ),
+                              ]),
+                              _vm._v(" "),
+                              _vm._m(17),
+                              _vm._v(" "),
+                              _c("br"),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "form-group" }, [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "col-md-6 col-sm-6 col-xs-12",
+                                  },
+                                  [
+                                    _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "btn btn-primary btn-submit-fix",
+                                        attrs: { type: "submit" },
+                                        on: {
+                                          click: function ($event) {
+                                            $event.preventDefault()
+                                            return _vm.getUserAddress()
+                                          },
+                                        },
+                                      },
+                                      [_vm._v("Place Order")]
+                                    ),
+                                  ]
+                                ),
+                              ]),
+                            ]),
+                          ]
+                        ),
+                      ]
+                    ),
+                  ]
+                ),
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row cart-footer" }),
+            ]
+          ),
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-lg-4" }, [
@@ -29451,7 +30225,7 @@ var render = function () {
                       ]),
                     ]),
                     _vm._v(" "),
-                    _vm._m(4),
+                    _vm._m(18),
                     _vm._v(" "),
                     _c("tr", { staticClass: "total-row" }, [
                       _c("td", [_vm._v("Total")]),
@@ -29463,7 +30237,7 @@ var render = function () {
                   ]),
                 ]),
                 _vm._v(" "),
-                _vm._m(5),
+                _vm._m(19),
               ]
             ),
           ]),
@@ -29532,464 +30306,143 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass: "container wrapper",
-        staticStyle: { "margin-top": "50px", "padding-top": "30px" },
-      },
-      [
-        _c("div", { staticClass: "row cart-head" }, [
-          _c("div", { staticClass: "container" }, [
-            _c("div", { staticClass: "row" }, [_c("p")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "row" }, [_c("p")]),
-          ]),
+    return _c("div", { staticClass: "row cart-head" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [_c("p")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "row" }, [_c("p")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("h4", [_vm._v("Shipping Address")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("strong", [_vm._v("Country:")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("strong", [_vm._v("Address:")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("strong", [_vm._v("City:")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("strong", [_vm._v("State:")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("strong", [_vm._v("Zip / Postal Code:")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("strong", [_vm._v("Phone Number:")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("strong", [_vm._v("Email Address:")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("h4", [_vm._v("Card Information")]),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("strong", [_vm._v("Card Type:")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("strong", [_vm._v("Credit Card Number:")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("strong", [_vm._v("Card CVV:")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("strong", [_vm._v("Expiration Date")]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("span", [_vm._v("Pay secure using your credit card.")]),
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("ul", { staticClass: "cards" }, [
+          _c("li", { staticClass: "visa hand" }, [_vm._v("Visa")]),
+          _vm._v(" "),
+          _c("li", { staticClass: "mastercard hand" }, [_vm._v("MasterCard")]),
+          _vm._v(" "),
+          _c("li", { staticClass: "amex hand" }, [_vm._v("Amex")]),
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "row cart-body" }, [
-          _c(
-            "form",
-            {
-              staticClass: "form-horizontal",
-              attrs: { method: "post", action: "" },
-            },
-            [
-              _c("div", {
-                staticClass:
-                  "col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6",
-              }),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6",
-                },
-                [
-                  _c("div", { staticClass: "panel panel-info" }, [
-                    _c("div", { staticClass: "panel-body" }, [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("h4", [_vm._v("Shipping Address")]),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("strong", [_vm._v("Country:")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: { type: "text", name: "country", value: "" },
-                          }),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "col-md-6 col-xs-12" }, [
-                          _c("strong", [_vm._v("First Name:")]),
-                          _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              name: "first_name",
-                              value: "",
-                            },
-                          }),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "span1" }),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-6 col-xs-12" }, [
-                          _c("strong", [_vm._v("Last Name:")]),
-                          _vm._v(" "),
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              name: "last_name",
-                              value: "",
-                            },
-                          }),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("strong", [_vm._v("Address:")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: { type: "text", name: "address", value: "" },
-                          }),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("strong", [_vm._v("City:")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: { type: "text", name: "city", value: "" },
-                          }),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("strong", [_vm._v("State:")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: { type: "text", name: "state", value: "" },
-                          }),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("strong", [_vm._v("Zip / Postal Code:")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              name: "zip_code",
-                              value: "",
-                            },
-                          }),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("strong", [_vm._v("Phone Number:")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              name: "phone_number",
-                              value: "",
-                            },
-                          }),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("strong", [_vm._v("Email Address:")]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "col-md-12" }, [
-                          _c("input", {
-                            staticClass: "form-control",
-                            attrs: {
-                              type: "text",
-                              name: "email_address",
-                              value: "",
-                            },
-                          }),
-                        ]),
-                      ]),
-                    ]),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass: "panel panel-info",
-                      staticStyle: { "margin-top": "50px" },
-                    },
-                    [
-                      _c("div", { staticClass: "panel-body" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("h4", [_vm._v("Card Information")]),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("strong", [_vm._v("Card Type:")]),
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c(
-                              "select",
-                              {
-                                staticClass: "form-control",
-                                attrs: {
-                                  id: "CreditCardType",
-                                  name: "CreditCardType",
-                                },
-                              },
-                              [
-                                _c("option", { attrs: { value: "5" } }, [
-                                  _vm._v("Visa"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "6" } }, [
-                                  _vm._v("MasterCard"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "7" } }, [
-                                  _vm._v("American Express"),
-                                ]),
-                                _vm._v(" "),
-                                _c("option", { attrs: { value: "8" } }, [
-                                  _vm._v("Discover"),
-                                ]),
-                              ]
-                            ),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("strong", [_vm._v("Credit Card Number:")]),
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                name: "car_number",
-                                value: "",
-                              },
-                            }),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("strong", [_vm._v("Card CVV:")]),
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: {
-                                type: "text",
-                                name: "car_code",
-                                value: "",
-                              },
-                            }),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("strong", [_vm._v("Expiration Date")]),
-                          ]),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "col-lg-6 col-md-6 col-sm-6 col-xs-12",
-                            },
-                            [
-                              _c(
-                                "select",
-                                {
-                                  staticClass: "form-control",
-                                  attrs: { name: "" },
-                                },
-                                [
-                                  _c("option", { attrs: { value: "" } }, [
-                                    _vm._v("Month"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "01" } }, [
-                                    _vm._v("01"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "02" } }, [
-                                    _vm._v("02"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "03" } }, [
-                                    _vm._v("03"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "04" } }, [
-                                    _vm._v("04"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "05" } }, [
-                                    _vm._v("05"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "06" } }, [
-                                    _vm._v("06"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "07" } }, [
-                                    _vm._v("07"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "08" } }, [
-                                    _vm._v("08"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "09" } }, [
-                                    _vm._v("09"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "10" } }, [
-                                    _vm._v("10"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "11" } }, [
-                                    _vm._v("11"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "12" } }, [
-                                    _vm._v("12"),
-                                  ]),
-                                ]
-                              ),
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "col-lg-6 col-md-6 col-sm-6 col-xs-12",
-                            },
-                            [
-                              _c(
-                                "select",
-                                {
-                                  staticClass: "form-control",
-                                  attrs: { name: "" },
-                                },
-                                [
-                                  _c("option", { attrs: { value: "" } }, [
-                                    _vm._v("Year"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2015" } }, [
-                                    _vm._v("2015"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2016" } }, [
-                                    _vm._v("2016"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2017" } }, [
-                                    _vm._v("2017"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2018" } }, [
-                                    _vm._v("2018"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2019" } }, [
-                                    _vm._v("2019"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2020" } }, [
-                                    _vm._v("2020"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2021" } }, [
-                                    _vm._v("2021"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2022" } }, [
-                                    _vm._v("2022"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2023" } }, [
-                                    _vm._v("2023"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2024" } }, [
-                                    _vm._v("2024"),
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("option", { attrs: { value: "2025" } }, [
-                                    _vm._v("2025"),
-                                  ]),
-                                ]
-                              ),
-                            ]
-                          ),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("span", [
-                              _vm._v("Pay secure using your credit card."),
-                            ]),
-                          ]),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "col-md-12" }, [
-                            _c("ul", { staticClass: "cards" }, [
-                              _c("li", { staticClass: "visa hand" }, [
-                                _vm._v("Visa"),
-                              ]),
-                              _vm._v(" "),
-                              _c("li", { staticClass: "mastercard hand" }, [
-                                _vm._v("MasterCard"),
-                              ]),
-                              _vm._v(" "),
-                              _c("li", { staticClass: "amex hand" }, [
-                                _vm._v("Amex"),
-                              ]),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "clearfix" }),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "form-group" }, [
-                          _c(
-                            "div",
-                            { staticClass: "col-md-6 col-sm-6 col-xs-12" },
-                            [
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-primary btn-submit-fix",
-                                  attrs: { type: "submit" },
-                                },
-                                [_vm._v("Place Order")]
-                              ),
-                            ]
-                          ),
-                        ]),
-                      ]),
-                    ]
-                  ),
-                ]
-              ),
-            ]
-          ),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row cart-footer" }),
-      ]
-    )
+        _c("div", { staticClass: "clearfix" }),
+      ]),
+    ])
   },
   function () {
     var _vm = this

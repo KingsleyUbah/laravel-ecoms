@@ -152,7 +152,7 @@
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Card Type:</strong></div>
                                 <div class="col-md-12">
-                                    <select id="CreditCardType" name="CreditCardType" class="form-control">
+                                    <select id="CreditCardType" name="CreditCardType" class="form-control" v-model="cardType">
                                         <option value="5">Visa</option>
                                         <option value="6">MasterCard</option>
                                         <option value="7">American Express</option>
@@ -162,18 +162,18 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Credit Card Number:</strong></div>
-                                <div class="col-md-12"><input type="text" class="form-control" name="car_number" value="" /></div>
+                                <div class="col-md-12"><input type="text" class="form-control" name="car_number" v-model="cardNumber" /></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12"><strong>Card CVV:</strong></div>
-                                <div class="col-md-12"><input type="text" class="form-control" name="car_code" value="" /></div>
+                                <div class="col-md-12"><input type="text" class="form-control" name="car_code" v-model="cardCode" /></div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <strong>Expiration Date</strong>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" name="">
+                                    <select class="form-control" name="" v-model="expirationMonth">
                                         <option value="">Month</option>
                                         <option value="01">01</option>
                                         <option value="02">02</option>
@@ -190,7 +190,7 @@
                                 </select>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                    <select class="form-control" name="">
+                                    <select class="form-control" name="" v-model="expirationYear">
                                         <option value="">Year</option>
                                         <option value="2015">2015</option>
                                         <option value="2016">2016</option>
@@ -287,7 +287,12 @@
 				state: '',
 				zipCode: '',
 				country: '',
-				phoneNo: ''
+				phoneNo: '',
+				cardType: '',
+				cardCode: '',
+				expirationMonth: '',
+				expirationYear: '',
+				cardNumber: ''
 			}
 		},
 		methods: {
@@ -297,8 +302,33 @@
 				console.log(this.items);
 			},
 
-			getUserAddress() {
+			async getUserAddress() {
+				if(this.firstName != '' && this.lastName != '' && this.cardNumber && this.cardCode) {
+					let response = await axios.post('process/user/payment', {
+						'firstName': this.firstName,
+						'lastName': this.lastName,
+						'email': this.email,
+						'address': this.address,
+						'city': this.city,
+						'state': this.state,
+						'zipCode': this.zipCode,
+						'country': this.country,
+						'phoneNo': this.phoneNo,
+						'cardType': this.cardType,
+						'cardCode': this.cardCode,
+						'expirationMonth': this.expirationMonth,
+						'expirationYear': this.expirationYear,
+						'cardNumber': this.cardNumber
+					});
 
+					 
+					console.log(response);
+
+
+				} else {
+					this.$toastr.e('Please complete the form to proceed');
+                    return;
+				}
 			}
 		},
         mounted() {

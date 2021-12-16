@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use Stripe;
 
 class CartController extends Controller
 {
@@ -151,5 +152,38 @@ class CartController extends Controller
         }
 
         return response()->json($finalItems);
+    }
+
+    public function processPayment(Request $request) 
+    {
+        $firstName = $request->get('firstName');
+        $lastName = $request->get('lastName');
+        $email = $request->get('email');
+        $address = $request->get('address');
+        $city = $request->get('city');
+        $state = $request->get('state');
+        $zipCode = $request->get('zipCode');
+        $country = $request->get('country');
+        $phoneNo = $request->get('phoneNo');
+        $cardType = $request->get('cardType');
+        $cardCode = $request->get('cardCode');
+        $expirationMonth = $request->get('expirationMonth');
+        $expirationYear = $request->get('expirationYear');
+        $cardNumber = $request->get('cardNumber');
+
+        // Process Payment
+
+        $stripe = Stripe::make(env('STRIPE_KEY'));
+
+        $token = $stripe->tokens()->create([
+            'card' => [
+                'number' => $cardNumber,
+                'exp_month' => $expirationMonth,
+                'exp_year' => $expirationYear,
+                'cvc' => $cardCode,
+            ]]
+        );
+
+        dd($token);
     }
 }
