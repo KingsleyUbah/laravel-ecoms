@@ -31,6 +31,7 @@ https://templatemo.com/tm-546-sixteen-clothing
     <link rel="stylesheet" href="assets/css/owl.css">
 
     @yield('styles')
+    @yield('scripts')
   </head>
 
   <body>
@@ -46,8 +47,12 @@ https://templatemo.com/tm-546-sixteen-clothing
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
+    @include('layouts.partials.header')
 
     <!-- Page Content -->
+    <div style="margin-bottom: 100px;">
+      Hahahaha
+    </div>
     @yield('content')
     
     <!-- Page Footer -->

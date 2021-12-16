@@ -114,4 +114,42 @@ class CartController extends Controller
     {
         //
     }
+
+    public function getCartItemsForCheckout()
+    {
+        
+        $cartItems = Cart::with('products')->where('user_id', auth()->user()->id)->get(); 
+
+        $finalItems = [];
+        $finalAmount = 0;
+
+        if(isset($cartItems)) 
+        { 
+            foreach($cartItems as $cartItem)
+            {
+                if($cartItem->products)
+                {
+                    foreach($cartItem->products as $product)
+                    {
+                        if($product->id === $cartItem->product_id)
+                        {
+                            $finalItems[$cartItem->product_id]['id'] = $product->id;
+                            $finalItems[$cartItem->product_id]['name'] = $product->name;
+                            $finalItems[$cartItem->product_id]['image'] = $product->image_name;
+                            $finalItems[$cartItem->product_id]['quantity'] = $cartItem->quantity;
+                            $finalItems[$cartItem->product_id]['sale_price'] = $cartItem->price;
+                            $finalItems[$cartItem->product_id]['total'] = $cartItem->price*$cartItem->quantity;
+
+                            $finalAmount += $cartItem->price*$cartItem->quantity;
+                            $finalItems['totalAmount'] = $finalAmount;
+                        }
+                    }
+        
+                } 
+            }
+            
+        }
+
+        return response()->json($finalItems);
+    }
 }
