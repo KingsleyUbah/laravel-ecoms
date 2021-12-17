@@ -274,7 +274,7 @@
 		</div>
 	</div>
     <!-- Button to Open the Modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+<button type="button" id="modalButton" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
   Open modal
 </button>
 
@@ -352,7 +352,7 @@
 					});
 
                     if(response.data.success) {
-                        window.location.href = '/checkout/success';  
+                        document.getElementById('modalButton').click();
                     }
 
 				} else {

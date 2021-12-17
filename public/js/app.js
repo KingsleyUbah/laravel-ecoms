@@ -5803,7 +5803,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _response = _context2.sent;
 
                 if (_response.data.success) {
-                  window.location.href = '/checkout/success';
+                  document.getElementById('modalButton').click();
                 }
 
                 _context2.next = 9;
@@ -30322,6 +30322,7 @@ var render = function () {
         staticClass: "btn btn-primary",
         attrs: {
           type: "button",
+          id: "modalButton",
           "data-toggle": "modal",
           "data-target": "#myModal",
         },
