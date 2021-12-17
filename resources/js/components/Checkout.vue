@@ -1,4 +1,5 @@
 <template>
+    <div>
     <div class="cart-wrap">
 		<div class="container">
 	        <div class="row">
@@ -19,7 +20,7 @@
 	                                <td v-if="item.name">
 	                                	<div class="display-flex align-center">
 		                                    <div class="img-product">
-		                                        <img :src="item.image" height=110>
+		                                        <img :src="item.image" height=80>
 		                                    </div>
 		                                    <div class="name-product">
 		                                        {{item.name}}
@@ -272,6 +273,33 @@
 			</div>
 		</div>
 	</div>
+    <!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+  Open modal
+</button>
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+
+      <div style="max-width:600px; margin:0 auto; text-align:center">
+            <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
+                <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
+                <span class="swal2-success-line-tip"></span>
+                <span class="swal2-success-line-long"></span>
+                <div class="swal2-success-ring"></div> 
+                <div class="swal2-success-fix" style="background-color: rgb(255, 255, 255);"></div>
+                <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);"></div>
+            </div>
+
+            <h1>Order Successfully completed. Keep shopping?</h1>
+        </div>
+
+    </div>
+  </div>
+</div>
+</div>
 </template>
 
 <script>
@@ -318,15 +346,17 @@
 						'cardCode': this.cardCode,
 						'expirationMonth': this.expirationMonth,
 						'expirationYear': this.expirationYear,
-						'cardNumber': this.cardNumber
+						'cardNumber': this.cardNumber,
+                        'amount': this.items.totalAmount,
+                        'order': this.items
 					});
 
-					 
-					console.log(response);
-
+                    if(response.data.success) {
+                        window.location.href = '/checkout/success';  
+                    }
 
 				} else {
-					this.$toastr.e('Please complete the form to proceed');
+					this.$toastr.e(response.data.errMessage);
                     return;
 				}
 			}

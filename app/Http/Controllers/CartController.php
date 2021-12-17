@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use App\Models\Processing;
 use Stripe;
 
 class CartController extends Controller
@@ -170,6 +171,20 @@ class CartController extends Controller
         $expirationMonth = $request->get('expirationMonth');
         $expirationYear = $request->get('expirationYear');
         $cardNumber = $request->get('cardNumber');
+        $amount = $request->get('amount');
+        $orders = $request->get('order');
+
+        $ordersArray = [];
+
+        // Getting order details and storing in above array
+        foreach($orders as $order) 
+        {
+            if($order['id']) 
+            {
+                $ordersArray[$order['id']] ['order_id'] = $order['id'];
+                $ordersArray[$order['id']] ['quantity'] = $order['quantity'];
+            }
+        }
 
         // Process Payment
 
@@ -184,6 +199,90 @@ class CartController extends Controller
             ]]
         );
 
-        dd($token);
+        if(!$token['id']) 
+        {
+            session()->flush('error', 'Stripe Token Generation Failed.');
+            return;
+        }
+
+        // Create Customer
+
+        $customer = $stripe->customers()->create([
+            'name' => $firstName.' '.$lastName,
+            'email' => $email,
+            'phone' => $phoneNo,
+            'address' => [
+                'line1' => $address,
+                'postal_code' => $zipCode,
+                'city' => $city,
+                'state' => $state,
+                'country' => $country,
+
+            ],
+            'shipping' => [
+                'name' => $firstName.' '.$lastName,
+                'address' => [
+                    'line1' => $address,
+                    'postal_code' => $zipCode,
+                    'city' => $city,
+                    'state' => $state,
+                    'country' => $country,
+    
+                ],   
+            ],
+            'source' => $token['id'], 
+        ]);
+
+        // Charging the customer
+
+        $charge = $stripe->charges()->create([
+            'customer' => $customer['id'],
+            'currency' => 'USD',
+            'amount' => $amount,
+            'description' => 'Payment for order',
+        ]);
+
+        if($charge['status'] == "succeeded") 
+        {
+            // capture details from Stripe
+
+            $customerStripeId = $charge['id'];
+            $amountRecieved = $charge['amount'];
+            
+            $processingDetails = Processing::create([
+                'client_id' => auth()->user()->id,
+                'client_name' => $firstName.' '.$lastName,
+                'client_address' => json_encode([
+                    'line1' => $address,
+                    'postal_code' => $zipCode,
+                    'city' => $city,
+                    'state' => $state,
+                    'country' => $country,
+    
+                ]),
+                'order_details' => json_encode($ordersArray),
+                'amount' => $amount,
+                'currency' => $charge['currency'],
+            ]);
+
+            if($processingDetails) 
+            {
+                // Clear the cart if payment is successfull
+
+                Cart::where('user_id', auth()->user()->id)->delete();
+
+                return ['success' => 'Order Failed. Please Contact Support.'];
+            }
+
+        } 
+        else 
+        {
+            return ['errMessage' => 'Order Failed. Please Contact Support.'];
+        }
+    }
+
+    public function displaySuccess() 
+    {
+        return view('checkout.success');
     }
 }

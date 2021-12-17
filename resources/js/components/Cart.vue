@@ -1,4 +1,4 @@
-<template>
+<template v-if="itemCount">
     <div>
         <li class="nav-item">
             <a class="nav-link" href="/checkout">Cart {{itemCount}}</a>

@@ -51,7 +51,7 @@ https://templatemo.com/tm-546-sixteen-clothing
 
     <!-- Page Content -->
     <div style="margin-bottom: 100px;">
-      Hahahaha
+      This text applies margin to the content
     </div>
     @yield('content')
     
