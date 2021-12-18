@@ -5718,6 +5718,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5768,18 +5771,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       var _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var _response;
-
+        var response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
+                document.getElementById('order-spinner').classList.add("spinner-border", "spinner-border-sm");
+
                 if (!(_this2.firstName != '' && _this2.lastName != '' && _this2.cardNumber && _this2.cardCode)) {
-                  _context2.next = 7;
+                  _context2.next = 21;
                   break;
                 }
 
-                _context2.next = 3;
+                _context2.next = 4;
                 return axios.post('process/user/payment', {
                   'firstName': _this2.firstName,
                   'lastName': _this2.lastName,
@@ -5799,22 +5803,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   'order': _this2.items
                 });
 
-              case 3:
-                _response = _context2.sent;
+              case 4:
+                response = _context2.sent;
 
-                if (_response.data.success) {
-                  document.getElementById('modalButton').click();
+                if (!(response.status == 200 && response.data.success)) {
+                  _context2.next = 11;
+                  break;
                 }
 
-                _context2.next = 9;
+                document.getElementById('order-spinner').classList.remove("spinner-border", "spinner-border-sm");
+                document.getElementById('modalButton').click();
+                setTimeout(function () {
+                  window.location.href = '/';
+                }, 700);
+                _context2.next = 19;
                 break;
 
-              case 7:
+              case 11:
+                if (!(response.status == 200 && response.status.errMessage)) {
+                  _context2.next = 16;
+                  break;
+                }
+
+                document.getElementById('order-spinner').classList.remove("spinner-border", "spinner-border-sm");
+
                 _this2.$toastr.e(response.data.errMessage);
+
+                _context2.next = 19;
+                break;
+
+              case 16:
+                document.getElementById('order-spinner').classList.remove("spinner-border", "spinner-border-sm");
+
+                _this2.$toastr.e('Something went wrong');
 
                 return _context2.abrupt("return");
 
-              case 9:
+              case 19:
+                _context2.next = 23;
+                break;
+
+              case 21:
+                _this2.$toastr.e('Please complete the form to proceed');
+
+                return _context2.abrupt("return");
+
+              case 23:
               case "end":
                 return _context2.stop();
             }
@@ -30252,7 +30286,14 @@ var render = function () {
                                             },
                                           },
                                         },
-                                        [_vm._v("Place Order")]
+                                        [
+                                          _vm._v(
+                                            "\n                                        Place Order\n                                        "
+                                          ),
+                                          _c("span", {
+                                            attrs: { id: "order-spinner" },
+                                          }),
+                                        ]
                                       ),
                                     ]
                                   ),
@@ -30570,56 +30611,60 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal", attrs: { id: "myModal" } }, [
-      _c("div", { staticClass: "modal-dialog modal-xl" }, [
-        _c("div", { staticClass: "modal-content" }, [
-          _c(
-            "div",
-            {
-              staticStyle: {
-                "max-width": "600px",
-                margin: "0 auto",
-                "text-align": "center",
-              },
-            },
-            [
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "swal2-icon swal2-success swal2-animate-success-icon",
-                  staticStyle: { display: "flex" },
+      _c(
+        "div",
+        { staticClass: "modal-dialog modal-xl modal-dialog-centered" },
+        [
+          _c("div", { staticClass: "modal-content" }, [
+            _c(
+              "div",
+              {
+                staticStyle: {
+                  "text-align": "center",
+                  width: "80vw",
+                  height: "80vh",
                 },
-                [
-                  _c("div", {
-                    staticClass: "swal2-success-circular-line-left",
-                    staticStyle: { "background-color": "rgb(255, 255, 255)" },
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "swal2-success-line-tip" }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "swal2-success-line-long" }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "swal2-success-ring" }),
-                  _vm._v(" "),
-                  _c("div", {
-                    staticClass: "swal2-success-fix",
-                    staticStyle: { "background-color": "rgb(255, 255, 255)" },
-                  }),
-                  _vm._v(" "),
-                  _c("div", {
-                    staticClass: "swal2-success-circular-line-right",
-                    staticStyle: { "background-color": "rgb(255, 255, 255)" },
-                  }),
-                ]
-              ),
-              _vm._v(" "),
-              _c("h1", [
-                _vm._v("Order Successfully completed. Keep shopping?"),
-              ]),
-            ]
-          ),
-        ]),
-      ]),
+              },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "swal2-icon swal2-success swal2-animate-success-icon",
+                    staticStyle: { display: "flex" },
+                  },
+                  [
+                    _c("div", {
+                      staticClass: "swal2-success-circular-line-left",
+                      staticStyle: { "background-color": "rgb(255, 255, 255)" },
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "swal2-success-line-tip" }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "swal2-success-line-long" }),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "swal2-success-ring" }),
+                    _vm._v(" "),
+                    _c("div", {
+                      staticClass: "swal2-success-fix",
+                      staticStyle: { "background-color": "rgb(255, 255, 255)" },
+                    }),
+                    _vm._v(" "),
+                    _c("div", {
+                      staticClass: "swal2-success-circular-line-right",
+                      staticStyle: { "background-color": "rgb(255, 255, 255)" },
+                    }),
+                  ]
+                ),
+                _vm._v(" "),
+                _c("h1", [
+                  _vm._v("Order Successfully completed. Keep shopping?"),
+                ]),
+              ]
+            ),
+          ]),
+        ]
+      ),
     ])
   },
 ]

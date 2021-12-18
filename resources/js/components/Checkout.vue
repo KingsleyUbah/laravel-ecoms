@@ -223,7 +223,10 @@
 							<br>
                             <div class="form-group">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <button type="submit" class="btn btn-primary btn-submit-fix" v-on:click.prevent="getUserAddress()">Place Order</button>
+                                    <button type="submit" class="btn btn-primary btn-submit-fix" v-on:click.prevent="getUserAddress()">
+                                        Place Order
+                                        <span class="" id="order-spinner"></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -280,10 +283,10 @@
 
 <!-- The Modal -->
 <div class="modal" id="myModal">
-  <div class="modal-dialog modal-xl">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
     <div class="modal-content">
 
-      <div style="max-width:600px; margin:0 auto; text-align:center">
+      <div style="text-align:center; width:80vw; height:80vh;">
             <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
                 <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);"></div>
                 <span class="swal2-success-line-tip"></span>
@@ -331,6 +334,8 @@
 			},
 
 			async getUserAddress() {
+                document.getElementById('order-spinner').classList.add("spinner-border", "spinner-border-sm");
+
 				if(this.firstName != '' && this.lastName != '' && this.cardNumber && this.cardCode) {
 					let response = await axios.post('process/user/payment', {
 						'firstName': this.firstName,
@@ -351,12 +356,26 @@
                         'order': this.items
 					});
 
-                    if(response.data.success) {
+                    
+                    if(response.status == 200 && response.data.success) {
+                        document.getElementById('order-spinner').classList.remove("spinner-border", "spinner-border-sm");
                         document.getElementById('modalButton').click();
+
+                        setTimeout(() => {
+                            window.location.href = '/';
+                        }, 700);
+                    } else if(response.status == 200 && response.status.errMessage) {
+                        document.getElementById('order-spinner').classList.remove("spinner-border", "spinner-border-sm");
+
+                        this.$toastr.e(response.data.errMessage);    
+                    } else {
+                        document.getElementById('order-spinner').classList.remove("spinner-border", "spinner-border-sm");
+                        this.$toastr.e('Something went wrong');    
+                        return;
                     }
 
 				} else {
-					this.$toastr.e(response.data.errMessage);
+					this.$toastr.e('Please complete the form to proceed');
                     return;
 				}
 			}

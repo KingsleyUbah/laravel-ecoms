@@ -28,3 +28,5 @@ Route::get('/checkout/get/items', [CartController::class, 'getCartItemsForChecko
 Route::get('/checkout/success', [CartController::class, 'displaySuccess']);
 
 Route::post('/process/user/payment', [CartController::class, 'processPayment']);
+
+// Route::get('/products/get', [ProductController::class, 'getProducts']);
