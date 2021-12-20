@@ -1,7 +1,7 @@
-<template v-if="itemCount">
-    <div>
+<template>
+    <div v-if="itemCount">
         <li class="nav-item">
-            <a class="nav-link" href="/checkout">Cart {{itemCount}}</a>
+            <a class="nav-link btn btn-danger" href="/checkout"><i class="fa fa-shopping-cart nav-link" aria-hidden="true"></i>Cart {{itemCount}}</a>
         </li>
     </div>
 </template>
@@ -17,6 +17,7 @@
         mounted() {
             this.$root.$on('changeInCart', (item) => {
                 this.itemCount = item;
+                this.$toastr.s('Product Added to Cart!');
             })
         },
         methods: {

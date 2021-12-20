@@ -13,7 +13,7 @@
                 </a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="products.html">Our Products</a>
+                <a class="nav-link" href="{{ route('products') }}">Our Products</a>
               </li>
               @guest
               <li class="nav-item">
@@ -39,9 +39,9 @@
                     @csrf
                 </form>
               </li>
-              <li>
-                <cart />
-              </li>
+                <li>
+                  <cart />
+                </li>
               @endauth
             </ul>
           </div>

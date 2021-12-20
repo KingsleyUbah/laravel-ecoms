@@ -62,7 +62,7 @@
 			        <!-- /.table-cart -->
 
 					<!-- payment information -->
-					<div class="container wrapper" style="margin-top: 50px; padding-top: 30px;">
+					<div class="container wrapper" style="margin-top: 50px; padding-top: 30px;" id="paymentPage">
             <div class="row cart-head">
                 <div class="container">
                 <div class="row">
@@ -264,7 +264,8 @@
 			                </table>
 			                <div class="btn-cart-totals">
 			                    <a href="#" class="update round-black-btn" title="">Update Cart</a>
-			                    <a href="#" class="checkout round-black-btn" title="">Proceed to Checkout</a>
+                                <a href="#" class="update round-black-btn" title="">Clear Cart</a>
+			                    <a href="#paymentPage" class="checkout round-black-btn" title="">Proceed to Payment</a>
 			                </div>
 			                <!-- /.btn-cart-totals -->
 			            </form>
@@ -277,7 +278,7 @@
 		</div>
 	</div>
     <!-- Button to Open the Modal -->
-<button type="button" id="modalButton" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+<button style="display: none;" type="button" id="modalButton" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
   Open modal
 </button>
 
@@ -375,6 +376,7 @@
                     }
 
 				} else {
+                    document.getElementById('order-spinner').classList.remove("spinner-border", "spinner-border-sm");
 					this.$toastr.e('Please complete the form to proceed');
                     return;
 				}

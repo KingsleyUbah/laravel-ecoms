@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,4 +30,5 @@ Route::get('/checkout/success', [CartController::class, 'displaySuccess']);
 
 Route::post('/process/user/payment', [CartController::class, 'processPayment']);
 
-// Route::get('/products/get', [ProductController::class, 'getProducts']);
+Route::get('/products', [ProductController::class, 'index'])->name('products');
+Route::get('/products/get', [ProductController::class, 'getProducts']);

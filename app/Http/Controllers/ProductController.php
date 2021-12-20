@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -13,7 +15,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('products.all');
     }
 
     /**
@@ -84,8 +86,11 @@ class ProductController extends Controller
 
     public function getProducts() 
     {
-        $products = Product::all();
+        $products = DB::table('products')->latest()->limit(6)->get();
 
-        return ['products' => $products];
+        return [
+            'products' => $products,
+            'userId' => auth()->user()->id
+        ];
     }
 }

@@ -1,6 +1,7 @@
 <template>
     <div>
         <button class="btn btn-warning" v-on:click.prevent="addProductToCart()">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
             Add to Cart
         </button>
     </div>

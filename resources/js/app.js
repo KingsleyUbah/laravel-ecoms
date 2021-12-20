@@ -10,6 +10,7 @@ window.Vue = require('vue').default;
 
 import Vue from 'vue';
 import VueToastr from 'vue-toastr';
+import JwPagination from 'jw-vue-pagination';
 
 Vue.use(VueToastr);
 
@@ -28,6 +29,8 @@ Vue.use(VueToastr);
 Vue.component('add-to-cart-button', require('./components/AddToCart.vue').default);
 Vue.component('cart', require('./components/Cart.vue').default);
 Vue.component('checkout', require('./components/Checkout.vue').default);
+Vue.component('products', require('./components/Products.vue').default);
+Vue.component('jw-pagination', JwPagination);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

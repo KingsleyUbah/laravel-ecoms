@@ -30,6 +30,7 @@ https://templatemo.com/tm-546-sixteen-clothing
     <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
     <link rel="stylesheet" href="assets/css/owl.css">
 
+    @yield('styles')
   </head>
 
   <body>
@@ -82,7 +83,7 @@ https://templatemo.com/tm-546-sixteen-clothing
       }
     </script>
 
-
+    @yield('scripts')
   </body>
 
 </html>
