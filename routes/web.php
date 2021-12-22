@@ -26,7 +26,11 @@ Route::post('/cart', [CartController::class, 'store'])->name('cart');
 Route::get('/checkout', [CartController::class, 'index'])->name('checkout');
 
 Route::get('/checkout/get/items', [CartController::class, 'getCartItemsForCheckout']);
+Route::post('/checkout/increment', [CartController::class, 'incrementItemInCheckout']);
+Route::post('/checkout/decrement', [CartController::class, 'decrementItemInCheckout']);
+Route::post('/checkout/delete/item', [CartController::class, 'deleteItemInCheckout']);
 Route::get('/checkout/success', [CartController::class, 'displaySuccess']);
+Route::get('/checkout/clear', [CartController::class, 'clearCart']);
 
 Route::post('/process/user/payment', [CartController::class, 'processPayment']);
 

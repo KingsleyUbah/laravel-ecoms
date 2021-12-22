@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "jw-vue-pagination": "^1.0.3",
+        "view-design": "^4.7.0",
         "vue-toastr": "^2.1.2"
     }
 }

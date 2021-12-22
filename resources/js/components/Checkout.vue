@@ -17,7 +17,7 @@
 	                        </thead>
 	                        <tbody>
 	                            <tr v-for="item in items" :key="item.id">
-	                                <td v-if="item.name">
+	                                <td>
 	                                	<div class="display-flex align-center">
 		                                    <div class="img-product">
 		                                        <img :src="item.image" height=80>
@@ -30,21 +30,21 @@
 		                                    </div>
 	                                    </div>
 	                                </td>
-	                                <td class="product-count" v-if="item.name">
+	                                <td class="product-count">
 	                                    <form action="#" class="count-inlineflex">
-										    <div class="qtyminus">-</div>
+										    <div class="qtyminus" v-on:click="decrement(item.id)">-</div>
 										    <input type="text" name="quantity" :value="item.quantity" class="qty">
-										    <div class="qtyplus">+</div>
+										    <div class="qtyplus" v-on:click="increment(item.id)">+</div>
 										</form>
 	                                </td>
-	                                <td v-if="item.name">
+	                                <td>
 	                                    <div class="total">
 	                                        ${{item.total}}
 	                                    </div>
 	                                </td>
-	                                <td v-if="item.name">
-	                                    <a href="#" title="">
-	                                        <img src="images/icons/delete.png" alt="" class="mCS_img_loaded">
+	                                <td>
+	                                    <a href="#" title="" v-on:click="deleteItem(item.id)">
+	                                        <i class="fa fa-times" aria-hidden="true"></i>
 	                                    </a>
 	                                </td>
 	                            </tr>
@@ -263,8 +263,7 @@
 			                    </tbody>
 			                </table>
 			                <div class="btn-cart-totals">
-			                    <a href="#" class="update round-black-btn" title="">Update Cart</a>
-                                <a href="#" class="update round-black-btn" title="">Clear Cart</a>
+                                <a href="#" class="update round-black-btn" title="" v-on:click="clearCart()">Clear Cart</a>
 			                    <a href="#paymentPage" class="checkout round-black-btn" title="">Proceed to Payment</a>
 			                </div>
 			                <!-- /.btn-cart-totals -->
@@ -328,6 +327,44 @@
 			}
 		},
 		methods: {
+            async increment(id) {
+                let response = await axios.post('/checkout/increment', {
+						'product_id': id,
+					});
+				this.items = response.data 
+				console.log(this.items);
+			},
+            async decrement(id) {
+                let response = await axios.post('/checkout/decrement', {
+						'product_id': id,
+					});
+				this.items = response.data 
+			},
+            async deleteItem(id) {
+                let response = await axios.post('/checkout/delete/item', {
+						'product_id': id,
+					});
+
+                if(response.data) {
+                    this.$toastr.s('Item Deleted!');
+                    this.items = response.data 
+                }
+				
+			},
+            async clearCart() {
+                let response = await axios.get('/checkout/clear');
+
+                if(response.data.success) {
+                    this.$toastr.s(response.data.success);
+
+                    setTimeout(() => {
+                            window.location.href = '/';
+                    }, 700);
+                } else {
+                    this.$toastr.e(response.data.error);
+                }
+				
+			},
 			async getCartItems() {
 				let response = await axios.get('/checkout/get/items');
 				this.items = response.data 

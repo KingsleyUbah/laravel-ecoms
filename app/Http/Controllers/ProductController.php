@@ -84,9 +84,9 @@ class ProductController extends Controller
         //
     }
 
-    public function getProducts() 
+    public function getProducts(Request $request) 
     {
-        $products = DB::table('products')->latest()->limit(6)->get();
+        $products = Product::orderBy('id', 'desc')->paginate($request->total);
 
         return [
             'products' => $products,

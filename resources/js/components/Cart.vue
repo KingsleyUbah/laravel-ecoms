@@ -1,5 +1,5 @@
 <template>
-    <div v-if="itemCount">
+    <div>
         <li class="nav-item">
             <a class="nav-link btn btn-danger" href="/checkout"><i class="fa fa-shopping-cart nav-link" aria-hidden="true"></i>Cart {{itemCount}}</a>
         </li>

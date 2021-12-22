@@ -10,7 +10,9 @@
 <script>
     export default {
         data(){
-
+            return {
+                haha: ''
+            }
         },
         props: ['productId', 'userId'],
         methods: {

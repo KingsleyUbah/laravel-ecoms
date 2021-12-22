@@ -46,16 +46,16 @@ https://templatemo.com/tm-546-sixteen-clothing
     <!-- ***** Preloader End ***** -->
 
     <!-- Header -->
-    @include('layouts.partials.header')
+    @yield('header')
 
     <!-- Page Content -->
     <!-- Banner Starts Here -->
-      @include('layouts.partials.banner')
+    @yield('banner')
     <!-- Banner Ends Here -->
 
     @yield('content')
       
-    @include('layouts.partials.footer')
+    @yield('footer')
 
     </div>
     <!-- Bootstrap core JavaScript -->
