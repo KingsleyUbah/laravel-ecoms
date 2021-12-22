@@ -6107,6 +6107,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    fetchByCat: function fetchByCat(page, category) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return axios.get("/products/get?page=".concat(page, "&total=").concat(_this2.total, "&category=").concat(category));
+
+              case 2:
+                response = _context2.sent;
+
+                if (response.data) {
+                  _this2.allProducts = response.data.products.data;
+                  _this2.pageInfo = response.data.products;
+                  _this2.userId = response.data.userId;
+                  document.querySelectorAll('.filter-button').forEach(function (el) {
+                    el.classList.remove('active');
+                  });
+                  document.querySelector('.' + category).classList.add('active');
+                }
+
+              case 4:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
     }
   },
   mounted: function mounted() {
@@ -77106,7 +77139,54 @@ var render = function () {
     _c("div", { staticClass: "products" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "row" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "col-md-12" }, [
+            _c("div", { staticClass: "filters" }, [
+              _c("ul", [
+                _c("li", { staticClass: "active filter-button all" }, [
+                  _vm._v("All Products"),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "filter-button featured",
+                    on: {
+                      click: function ($event) {
+                        return _vm.fetchByCat(1, "featured")
+                      },
+                    },
+                  },
+                  [_vm._v("Featured")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "filter-button flash",
+                    on: {
+                      click: function ($event) {
+                        return _vm.fetchByCat(1, "flash")
+                      },
+                    },
+                  },
+                  [_vm._v("Flash Deals")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "li",
+                  {
+                    staticClass: "filter-button lastminute",
+                    on: {
+                      click: function ($event) {
+                        return _vm.fetchByCat(1, "last minute")
+                      },
+                    },
+                  },
+                  [_vm._v("Last Minute")]
+                ),
+              ]),
+            ]),
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-12" }, [
             _c("div", { staticClass: "filters-content" }, [
@@ -77117,13 +77197,10 @@ var render = function () {
                     _vm._l(_vm.allProducts, function (product) {
                       return _c(
                         "div",
-                        {
-                          key: product.id,
-                          staticClass: "col-lg-4 col-md-4 filter featured",
-                        },
+                        { key: product.id, staticClass: "col-lg-4 col-md-4" },
                         [
                           _c("div", { staticClass: "product-item" }, [
-                            _vm._m(1, true),
+                            _vm._m(0, true),
                             _vm._v(" "),
                             _c(
                               "div",
@@ -77139,7 +77216,7 @@ var render = function () {
                                 _vm._v(" "),
                                 _c("p", [_vm._v(_vm._s(product.description))]),
                                 _vm._v(" "),
-                                _vm._m(2, true),
+                                _vm._m(1, true),
                                 _vm._v(" "),
                                 _c("span", [_vm._v("Reviews (12)")]),
                                 _vm._v(" "),
@@ -77185,49 +77262,6 @@ var render = function () {
   ])
 }
 var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-md-12" }, [
-      _c("div", { staticClass: "filters" }, [
-        _c("ul", [
-          _c(
-            "li",
-            {
-              staticClass: "active filter-button",
-              attrs: { "data-filter": "all" },
-            },
-            [_vm._v("All Products")]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "filter-button",
-              attrs: { "data-filter": "featured" },
-            },
-            [_vm._v("Featured")]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            { staticClass: "filter-button", attrs: { "data-filter": "flash" } },
-            [_vm._v("Flash Deals")]
-          ),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "filter-button",
-              attrs: { "data-filter": "limited" },
-            },
-            [_vm._v("Last Minute")]
-          ),
-        ]),
-      ]),
-    ])
-  },
   function () {
     var _vm = this
     var _h = _vm.$createElement

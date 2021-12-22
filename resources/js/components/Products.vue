@@ -6,10 +6,10 @@
           <div class="col-md-12">
             <div class="filters">
               <ul>
-                  <li class="active filter-button" data-filter="all">All Products</li>
-                  <li class="filter-button" data-filter="featured">Featured</li>
-                  <li class="filter-button" data-filter="flash">Flash Deals</li>
-                  <li class="filter-button" data-filter="limited">Last Minute</li>
+                  <li class="active filter-button all" >All Products</li>
+                  <li class="filter-button featured" v-on:click="fetchByCat(1, 'featured')">Featured</li>
+                  <li class="filter-button flash" v-on:click="fetchByCat(1, 'flash')">Flash Deals</li>
+                  <li class="filter-button lastminute" v-on:click="fetchByCat(1, 'last minute')">Last Minute</li>
               </ul>
             </div>
           </div>
@@ -18,7 +18,7 @@
                 <div class="row grid" v-if="allProducts">
 
                   
-                    <div class="col-lg-4 col-md-4 filter featured" v-for="product in allProducts" :key="product.id">
+                    <div class="col-lg-4 col-md-4" v-for="product in allProducts" :key="product.id">
                       <div class="product-item">
                         <a href="#"><img src="assets/images/product_01.jpg" alt="" height="250px"></a>
                         <div class="down-content">
@@ -75,7 +75,24 @@
                 this.pageInfo = response.data.products;
                 this.userId = response.data.userId;
                 
-            }, 
+            },
+            async fetchByCat(page, category) {
+              const response = await axios.get(`/products/get?page=${page}&total=${this.total}&category=${category}`);
+
+              if(response.data) {
+                this.allProducts = response.data.products.data;
+                this.pageInfo = response.data.products;
+                this.userId = response.data.userId;
+
+                document.querySelectorAll('.filter-button').forEach((el) => {
+                  el.classList.remove('active');
+                })
+
+                document.querySelector('.'+category).classList.add('active');
+              }
+                
+                
+            },
         },
         
         mounted() {

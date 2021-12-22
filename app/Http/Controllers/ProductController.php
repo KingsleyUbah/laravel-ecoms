@@ -86,7 +86,15 @@ class ProductController extends Controller
 
     public function getProducts(Request $request) 
     {
-        $products = Product::orderBy('id', 'desc')->paginate($request->total);
+        if($request->has('category')) 
+        {
+            $products = Product::where('category', $request->category)->orderBy('id', 'desc')->paginate($request->total);
+        }
+        else 
+        {
+            $products = Product::orderBy('id', 'desc')->paginate($request->total);
+        }
+        
 
         return [
             'products' => $products,

@@ -34,7 +34,7 @@
     }
 
     .pagination .ivu-page-item-active a {
-        background-color: #4CAF50;
+        background-color: red;
         color: white;
     }
 
@@ -44,29 +44,3 @@
 </style>
 @endsection
 
-@section('scripts')
-<script>
-    $(document).ready(function() {
-
-    $(".filter-button").click(function() {
-        var value = $(this).attr('data-filter');
-
-        if(value == "all") 
-        {
-            $('.filter').show('1000');
-        } 
-        else 
-        {
-            $('.filter').not('.'+value).hide('3000');
-            $('.filter').filter('.'+value).show('3000');
-        }
-    }); 
-       if($('.filter-button').removeClass('active')) 
-       {
-           $(this).removeClass('active');
-       } 
-
-       $(this).addClass("active");
-    });
-</script>
-@endsection
