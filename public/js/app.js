@@ -5728,6 +5728,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -6068,13 +6069,18 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       allProducts: [],
       userId: '',
       total: 6,
-      pageInfo: null
+      pageInfo: null,
+      isCategorized: false,
+      activeCategory: ''
     };
   },
   methods: {
@@ -6096,11 +6102,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 4:
                 response = _context.sent;
-                _this.allProducts = response.data.products.data;
-                _this.pageInfo = response.data.products;
-                _this.userId = response.data.userId;
 
-              case 8:
+                if (response.data) {
+                  _this.isCategorized = false;
+                  _this.allProducts = response.data.products.data;
+                  _this.pageInfo = response.data.products;
+                  _this.userId = response.data.userId;
+                }
+
+              case 6:
               case "end":
                 return _context.stop();
             }
@@ -6108,22 +6118,27 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
-    fetchByCat: function fetchByCat(page, category) {
-      var _this2 = this;
+    fetchByCat: function fetchByCat() {
+      var _arguments2 = arguments,
+          _this2 = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-        var response;
+        var page, category, response;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                _context2.next = 2;
+                page = _arguments2.length > 0 && _arguments2[0] !== undefined ? _arguments2[0] : 1;
+                category = _arguments2.length > 1 && _arguments2[1] !== undefined ? _arguments2[1] : _this2.activeCategory;
+                _context2.next = 4;
                 return axios.get("/products/get?page=".concat(page, "&total=").concat(_this2.total, "&category=").concat(category));
 
-              case 2:
+              case 4:
                 response = _context2.sent;
 
                 if (response.data) {
+                  _this2.isCategorized = true;
+                  _this2.activeCategory = category;
                   _this2.allProducts = response.data.products.data;
                   _this2.pageInfo = response.data.products;
                   _this2.userId = response.data.userId;
@@ -6133,7 +6148,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   document.querySelector('.' + category).classList.add('active');
                 }
 
-              case 4:
+              case 6:
               case "end":
                 return _context2.stop();
             }
@@ -75904,108 +75919,116 @@ var render = function () {
                   "tbody",
                   _vm._l(_vm.items, function (item) {
                     return _c("tr", { key: item.id }, [
-                      _c("td", [
-                        _c(
-                          "div",
-                          { staticClass: "display-flex align-center" },
-                          [
-                            _c("div", { staticClass: "img-product" }, [
-                              _c("img", {
-                                attrs: { src: item.image, height: "80" },
-                              }),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "name-product" }, [
-                              _vm._v(
-                                "\n\t\t                                        " +
-                                  _vm._s(item.name) +
-                                  "\n\t\t                                    "
-                              ),
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "price" }, [
-                              _vm._v(
-                                "\n\t\t                                        " +
-                                  _vm._s(item.sale_price) +
-                                  "\n\t\t                                    "
-                              ),
-                            ]),
-                          ]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "product-count" }, [
-                        _c(
-                          "form",
-                          {
-                            staticClass: "count-inlineflex",
-                            attrs: { action: "#" },
-                          },
-                          [
+                      item.name
+                        ? _c("td", [
                             _c(
                               "div",
+                              { staticClass: "display-flex align-center" },
+                              [
+                                _c("div", { staticClass: "img-product" }, [
+                                  _c("img", {
+                                    attrs: { src: item.image, height: "80" },
+                                  }),
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "name-product" }, [
+                                  _vm._v(
+                                    "\n\t\t                                        " +
+                                      _vm._s(item.name) +
+                                      "\n\t\t                                    "
+                                  ),
+                                ]),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "price" }, [
+                                  _vm._v(
+                                    "\n\t\t                                        " +
+                                      _vm._s(item.sale_price) +
+                                      "\n\t\t                                    "
+                                  ),
+                                ]),
+                              ]
+                            ),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      item.name
+                        ? _c("td", { staticClass: "product-count" }, [
+                            _c(
+                              "form",
                               {
-                                staticClass: "qtyminus",
+                                staticClass: "count-inlineflex",
+                                attrs: { action: "#" },
+                              },
+                              [
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "qtyminus",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.decrement(item.id)
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("-")]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  staticClass: "qty",
+                                  attrs: { type: "text", name: "quantity" },
+                                  domProps: { value: item.quantity },
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "div",
+                                  {
+                                    staticClass: "qtyplus",
+                                    on: {
+                                      click: function ($event) {
+                                        return _vm.increment(item.id)
+                                      },
+                                    },
+                                  },
+                                  [_vm._v("+")]
+                                ),
+                              ]
+                            ),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      item.name
+                        ? _c("td", [
+                            _c("div", { staticClass: "total" }, [
+                              _vm._v(
+                                "\n\t                                        $" +
+                                  _vm._s(item.total) +
+                                  "\n\t                                    "
+                              ),
+                            ]),
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      item.name
+                        ? _c("td", [
+                            _c(
+                              "a",
+                              {
+                                attrs: { href: "#", title: "" },
                                 on: {
                                   click: function ($event) {
-                                    return _vm.decrement(item.id)
+                                    return _vm.deleteItem(item.id)
                                   },
                                 },
                               },
-                              [_vm._v("-")]
+                              [
+                                _c("i", {
+                                  staticClass: "fa fa-times",
+                                  attrs: { "aria-hidden": "true" },
+                                }),
+                              ]
                             ),
-                            _vm._v(" "),
-                            _c("input", {
-                              staticClass: "qty",
-                              attrs: { type: "text", name: "quantity" },
-                              domProps: { value: item.quantity },
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "div",
-                              {
-                                staticClass: "qtyplus",
-                                on: {
-                                  click: function ($event) {
-                                    return _vm.increment(item.id)
-                                  },
-                                },
-                              },
-                              [_vm._v("+")]
-                            ),
-                          ]
-                        ),
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c("div", { staticClass: "total" }, [
-                          _vm._v(
-                            "\n\t                                        $" +
-                              _vm._s(item.total) +
-                              "\n\t                                    "
-                          ),
-                        ]),
-                      ]),
-                      _vm._v(" "),
-                      _c("td", [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#", title: "" },
-                            on: {
-                              click: function ($event) {
-                                return _vm.deleteItem(item.id)
-                              },
-                            },
-                          },
-                          [
-                            _c("i", {
-                              staticClass: "fa fa-times",
-                              attrs: { "aria-hidden": "true" },
-                            }),
-                          ]
-                        ),
-                      ]),
+                          ])
+                        : _vm._e(),
                     ])
                   }),
                   0
@@ -76827,6 +76850,15 @@ var render = function () {
                       },
                       [_vm._v("Proceed to Payment")]
                     ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "checkout round-black-btn",
+                        attrs: { href: "/products", title: "" },
+                      },
+                      [_vm._v("Continue Shopping")]
+                    ),
                   ]),
                 ]
               ),
@@ -77240,21 +77272,37 @@ var render = function () {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-12" }, [
-            _c(
-              "div",
-              { staticClass: "pagination" },
-              [
-                _c("Page", {
-                  attrs: {
-                    total: _vm.pageInfo.total,
-                    current: _vm.pageInfo.current_page,
-                    "page-size": parseInt(_vm.pageInfo.per_page),
-                  },
-                  on: { "on-change": _vm.getProducts },
-                }),
-              ],
-              1
-            ),
+            _vm.isCategorized == true
+              ? _c(
+                  "div",
+                  { staticClass: "pagination" },
+                  [
+                    _c("Page", {
+                      attrs: {
+                        total: _vm.pageInfo.total,
+                        current: _vm.pageInfo.current_page,
+                        "page-size": parseInt(_vm.pageInfo.per_page),
+                      },
+                      on: { "on-change": _vm.fetchByCat },
+                    }),
+                  ],
+                  1
+                )
+              : _c(
+                  "div",
+                  { staticClass: "pagination" },
+                  [
+                    _c("Page", {
+                      attrs: {
+                        total: _vm.pageInfo.total,
+                        current: _vm.pageInfo.current_page,
+                        "page-size": parseInt(_vm.pageInfo.per_page),
+                      },
+                      on: { "on-change": _vm.getProducts },
+                    }),
+                  ],
+                  1
+                ),
           ]),
         ]),
       ]),

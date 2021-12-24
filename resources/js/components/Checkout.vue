@@ -17,7 +17,7 @@
 	                        </thead>
 	                        <tbody>
 	                            <tr v-for="item in items" :key="item.id">
-	                                <td>
+	                                <td v-if="item.name">
 	                                	<div class="display-flex align-center">
 		                                    <div class="img-product">
 		                                        <img :src="item.image" height=80>
@@ -30,19 +30,19 @@
 		                                    </div>
 	                                    </div>
 	                                </td>
-	                                <td class="product-count">
+	                                <td class="product-count" v-if="item.name">
 	                                    <form action="#" class="count-inlineflex">
 										    <div class="qtyminus" v-on:click="decrement(item.id)">-</div>
 										    <input type="text" name="quantity" :value="item.quantity" class="qty">
 										    <div class="qtyplus" v-on:click="increment(item.id)">+</div>
 										</form>
 	                                </td>
-	                                <td>
+	                                <td v-if="item.name">
 	                                    <div class="total">
 	                                        ${{item.total}}
 	                                    </div>
 	                                </td>
-	                                <td>
+	                                <td v-if="item.name">
 	                                    <a href="#" title="" v-on:click="deleteItem(item.id)">
 	                                        <i class="fa fa-times" aria-hidden="true"></i>
 	                                    </a>
@@ -265,6 +265,7 @@
 			                <div class="btn-cart-totals">
                                 <a href="#" class="update round-black-btn" title="" v-on:click="clearCart()">Clear Cart</a>
 			                    <a href="#paymentPage" class="checkout round-black-btn" title="">Proceed to Payment</a>
+                                <a href="/products" class="checkout round-black-btn" title="">Continue Shopping</a>
 			                </div>
 			                <!-- /.btn-cart-totals -->
 			            </form>

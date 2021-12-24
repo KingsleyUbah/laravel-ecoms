@@ -44,7 +44,10 @@
             </div>
           </div>
           <div class="col-md-12">
-            <div class="pagination">
+            <div class="pagination" v-if="isCategorized == true">
+              <Page :total="pageInfo.total" :current="pageInfo.current_page" :page-size="parseInt(pageInfo.per_page)" @on-change="fetchByCat"/>
+            </div>
+            <div class="pagination" v-else>
               <Page :total="pageInfo.total" :current="pageInfo.current_page" :page-size="parseInt(pageInfo.per_page)" @on-change="getProducts"/>
             </div>
           </div>
@@ -61,8 +64,9 @@
                 allProducts: [],
                 userId: '',
                 total: 6,
-                pageInfo: null
-                
+                pageInfo: null,
+                isCategorized: false,
+                activeCategory: '',
             }
         },
         methods: {
@@ -71,27 +75,31 @@
                 console.log(page)
                 const response = await axios.get(`/products/get?page=${page}&total=${this.total}`);
                 
+                if(response.data) {
+                  this.isCategorized = false;
+                  this.allProducts = response.data.products.data;
+                  this.pageInfo = response.data.products;
+                  this.userId = response.data.userId;
+                }
+              
+            },
+            async fetchByCat(page = 1, category = this.activeCategory) {
+              const response = await axios.get(`/products/get?page=${page}&total=${this.total}&category=${category}`);              
+              
+              if(response.data) {
+                this.isCategorized = true;
+                this.activeCategory = category;
                 this.allProducts = response.data.products.data;
                 this.pageInfo = response.data.products;
                 this.userId = response.data.userId;
                 
-            },
-            async fetchByCat(page, category) {
-              const response = await axios.get(`/products/get?page=${page}&total=${this.total}&category=${category}`);
-
-              if(response.data) {
-                this.allProducts = response.data.products.data;
-                this.pageInfo = response.data.products;
-                this.userId = response.data.userId;
-
                 document.querySelectorAll('.filter-button').forEach((el) => {
                   el.classList.remove('active');
                 })
 
                 document.querySelector('.'+category).classList.add('active');
               }
-                
-                
+
             },
         },
         
