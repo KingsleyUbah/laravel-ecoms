@@ -11,7 +11,12 @@ use Stripe;
 class CartController extends Controller
 {
 
-    public function index()
+    public function getCartPage()
+    {
+        return view('cart.index');
+    }
+
+    public function getCheckoutPage()
     {
         return view('checkout.index');
     }

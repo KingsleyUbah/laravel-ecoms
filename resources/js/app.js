@@ -31,7 +31,8 @@ Vue.use(ViewUI);
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('add-to-cart-button', require('./components/AddToCart.vue').default);
 Vue.component('cart', require('./components/Cart.vue').default);
-Vue.component('checkout', require('./components/Checkout.vue').default);
+Vue.component('cart-page', require('./components/Cartpage.vue').default);
+Vue.component('checkout-page', require('./components/Checkout.vue').default);
 Vue.component('products', require('./components/Products.vue').default);
 Vue.component('Page', Page);
 

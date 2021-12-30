@@ -1,9 +1,8 @@
 <template>
-    <div>
-        <li class="nav-item">
-            <a class="nav-link btn btn-danger" href="/checkout"><i class="fa fa-shopping-cart nav-link" aria-hidden="true"></i>Cart {{itemCount}}</a>
-        </li>
-    </div>
+    <a href="/cart" class="btn cart">
+        <i class="fa fa-shopping-cart"></i>
+        <span>({{ itemCount }})</span>
+    </a>
 </template>
 
 <script>import axios from "axios";

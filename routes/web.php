@@ -21,16 +21,17 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Auth::routes();
 
 
-Route::post('/cart', [CartController::class, 'store'])->name('cart');
+Route::post('/tocart', [CartController::class, 'store'])->name('tocart');
+Route::get('/cart', [CartController::class, 'getCartPage'])->name('cart');
 
-Route::get('/checkout', [CartController::class, 'index'])->name('checkout');
+Route::get('/checkout', [CartController::class, 'getCheckoutPage'])->name('checkout');
 
-Route::get('/checkout/get/items', [CartController::class, 'getCartItemsForCheckout']);
-Route::post('/checkout/increment', [CartController::class, 'incrementItemInCheckout']);
-Route::post('/checkout/decrement', [CartController::class, 'decrementItemInCheckout']);
-Route::post('/checkout/delete/item', [CartController::class, 'deleteItemInCheckout']);
-Route::get('/checkout/success', [CartController::class, 'displaySuccess']);
-Route::get('/checkout/clear', [CartController::class, 'clearCart']);
+Route::get('/cart/get/items', [CartController::class, 'getCartItemsForCartPage']);
+Route::post('/cart/increment', [CartController::class, 'incrementItemInCheckout']);
+Route::post('/cart/decrement', [CartController::class, 'decrementItemInCheckout']);
+Route::post('/cart/delete/item', [CartController::class, 'deleteItemInCheckout']);
+Route::get('/cart/success', [CartController::class, 'displaySuccess']);
+Route::get('/cart/clear', [CartController::class, 'clearCart']);
 
 Route::post('/process/user/payment', [CartController::class, 'processPayment']);
 

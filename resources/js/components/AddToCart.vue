@@ -1,10 +1,5 @@
 <template>
-    <div>
-        <button class="btn btn-warning" v-on:click.prevent="addProductToCart()">
-            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-            Add to Cart
-        </button>
-    </div>
+    <a class="btn" v-on:click.prevent="addProductToCart()"><i class="fa fa-shopping-cart"></i>Buy Now</a>
 </template>
 
 <script>
@@ -24,7 +19,7 @@
                     return;
                 }
 
-                let response = await axios.post('/cart', {
+                let response = await axios.post('/tocart', {
                     'product_id': Number(this.productId)
                 })
 

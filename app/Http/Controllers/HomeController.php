@@ -28,8 +28,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $products = DB::table('products')->latest()->limit(6)->get();
+        $clothes = DB::table('products')->where('category', 'clothing')->latest()->limit(6)->get();
+        $shoes = DB::table('products')->where('category', 'shoes')->latest()->limit(6)->get();
+        $kids = DB::table('products')->where('category', 'kids')->latest()->limit(6)->get();
+        $jewelleries = DB::table('products')->where('category', 'jewellery')->latest()->limit(6)->get();
 
-        return view('home', compact('products'));
+        return view('home', compact('clothes', 'shoes', 'kids', 'jewelleries'));
     }
 }
