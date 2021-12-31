@@ -21,6 +21,7 @@
 
         <!-- Template Stylesheet -->
         <link href="css/style.css" rel="stylesheet">
+        
     </head>
 
     <body>
@@ -35,7 +36,23 @@
         
         <!-- Bottom Bar Start -->
         @include('layouts.partials.logo-bar')
-        <!-- Bottom Bar End -->       
+        <!-- Bottom Bar End --> 
+        
+        <!-- For login Page -->
+        @yield('login')
+        <!-- End Login -->
+
+        <!-- For register page -->
+        @yield('register')
+        <!-- End register -->
+
+        <!-- Cart page -->
+        @yield('cart-page')
+        <!-- End Cart page -->
+
+        <!-- Cart page -->
+        @yield('checkout-page')
+        <!-- End Cart page -->
         
         <!-- Main Slider Start -->
         @yield('header')
@@ -84,9 +101,12 @@
         @include('layouts.partials.copyright')
         <!-- Footer Bottom End -->       
         
-        <!-- Back to Top -->
-        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+            <!-- Back to Top -->
+            <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
         </div>
+
+
+        <script src="{{ asset('js/app.js') }}" defer></script>
         
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

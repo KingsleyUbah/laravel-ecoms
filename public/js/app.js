@@ -5374,7 +5374,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/cart');
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().post('/tocart');
 
               case 2:
                 response = _context.sent;
@@ -5891,6 +5891,61 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -5904,10 +5959,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       zipCode: '',
       country: '',
       phoneNo: '',
-      cardType: 'Visa',
-      cardCode: '321',
-      expirationMonth: 'January',
-      expirationYear: '2025',
+      cardType: '',
+      cardCode: '',
+      expirationMonth: '',
+      expirationYear: '',
       cardNumber: ''
     };
   },
@@ -5921,12 +5976,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                document.getElementById('order-spinner').classList.add("spinner-border", "spinner-border-sm");
+
                 if (!(_this.firstName != '' && _this.lastName != '' && _this.cardNumber && _this.cardCode)) {
-                  _context.next = 16;
+                  _context.next = 18;
                   break;
                 }
 
-                _context.next = 3;
+                _context.next = 4;
                 return axios.post('process/user/payment', {
                   'firstName': _this.firstName,
                   'lastName': _this.lastName,
@@ -5946,48 +6003,49 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   'order': _this.items
                 });
 
-              case 3:
+              case 4:
                 response = _context.sent;
 
                 if (!(response.status == 200 && response.data.success)) {
-                  _context.next = 8;
+                  _context.next = 10;
                   break;
                 }
 
-                // document.getElementById('order-spinner').classList.remove("spinner-border", "spinner-border-sm");              
+                document.getElementById('order-spinner').classList.remove("spinner-border", "spinner-border-sm");
                 setTimeout(function () {
                   window.location.href = '/';
                 }, 700);
-                _context.next = 14;
+                _context.next = 16;
                 break;
 
-              case 8:
+              case 10:
                 if (!(response.status == 200 && response.status.errMessage)) {
-                  _context.next = 12;
+                  _context.next = 14;
                   break;
                 }
 
                 _this.$toastr.e(response.data.errMessage);
 
-                _context.next = 14;
+                _context.next = 16;
                 break;
 
-              case 12:
+              case 14:
                 _this.$toastr.e('Something went wrong');
 
                 return _context.abrupt("return");
 
-              case 14:
-                _context.next = 18;
+              case 16:
+                _context.next = 21;
                 break;
 
-              case 16:
-                // document.getElementById('order-spinner').classList.remove("spinner-border", "spinner-border-sm");
+              case 18:
+                document.getElementById('order-spinner').classList.remove("spinner-border", "spinner-border-sm");
+
                 _this.$toastr.e('Please complete the form to proceed');
 
                 return _context.abrupt("return");
 
-              case 18:
+              case 21:
               case "end":
                 return _context.stop();
             }
@@ -76022,61 +76080,69 @@ var render = function () {
                             ])
                           : _vm._e(),
                         _vm._v(" "),
-                        _c("td", [_vm._v("$" + _vm._s(item.sale_price))]),
+                        item.name
+                          ? _c("td", [_vm._v("$" + _vm._s(item.sale_price))])
+                          : _vm._e(),
                         _vm._v(" "),
-                        _c("td", [
-                          _c("div", { staticClass: "qty" }, [
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn-minus",
-                                on: {
-                                  click: function ($event) {
-                                    $event.preventDefault()
-                                    return _vm.decrement(item.id)
+                        item.name
+                          ? _c("td", [
+                              _c("div", { staticClass: "qty" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn-minus",
+                                    on: {
+                                      click: function ($event) {
+                                        $event.preventDefault()
+                                        return _vm.decrement(item.id)
+                                      },
+                                    },
+                                  },
+                                  [_c("i", { staticClass: "fa fa-minus" })]
+                                ),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: { type: "text" },
+                                  domProps: { value: item.quantity },
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn-plus",
+                                    on: {
+                                      click: function ($event) {
+                                        $event.preventDefault()
+                                        return _vm.increment(item.id)
+                                      },
+                                    },
+                                  },
+                                  [_c("i", { staticClass: "fa fa-plus" })]
+                                ),
+                              ]),
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        item.name
+                          ? _c("td", [_vm._v("$" + _vm._s(item.total))])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        item.name
+                          ? _c("td", [
+                              _c(
+                                "button",
+                                {
+                                  on: {
+                                    click: function ($event) {
+                                      $event.preventDefault()
+                                      return _vm.deleteItem(item.id)
+                                    },
                                   },
                                 },
-                              },
-                              [_c("i", { staticClass: "fa fa-minus" })]
-                            ),
-                            _vm._v(" "),
-                            _c("input", {
-                              attrs: { type: "text" },
-                              domProps: { value: item.quantity },
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn-plus",
-                                on: {
-                                  click: function ($event) {
-                                    $event.preventDefault()
-                                    return _vm.increment(item.id)
-                                  },
-                                },
-                              },
-                              [_c("i", { staticClass: "fa fa-plus" })]
-                            ),
-                          ]),
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v("$" + _vm._s(item.sale_price))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _c(
-                            "button",
-                            {
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.deleteItem(item.id)
-                                },
-                              },
-                            },
-                            [_c("i", { staticClass: "fa fa-trash" })]
-                          ),
-                        ]),
+                                [_c("i", { staticClass: "fa fa-trash" })]
+                              ),
+                            ])
+                          : _vm._e(),
                       ])
                     }),
                     0
@@ -76127,7 +76193,7 @@ var render = function () {
                         [_vm._v("Clear Cart")]
                       ),
                       _vm._v(" "),
-                      _c("button", { attrs: { href: "/checkout" } }, [
+                      _c("a", { attrs: { href: "/checkout" } }, [
                         _vm._v("Checkout"),
                       ]),
                     ]),
@@ -76395,15 +76461,23 @@ var render = function () {
                         },
                       },
                       [
-                        _c("option", { attrs: { selected: "" } }, [
-                          _vm._v("United States"),
+                        _c(
+                          "option",
+                          { attrs: { value: "usa", selected: "" } },
+                          [_vm._v("United States")]
+                        ),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "afghanistan" } }, [
+                          _vm._v("Afghanistan"),
                         ]),
                         _vm._v(" "),
-                        _c("option", [_vm._v("Afghanistan")]),
+                        _c("option", { attrs: { value: "albania" } }, [
+                          _vm._v("Albania"),
+                        ]),
                         _vm._v(" "),
-                        _c("option", [_vm._v("Albania")]),
-                        _vm._v(" "),
-                        _c("option", [_vm._v("Algeria")]),
+                        _c("option", { attrs: { value: "algeria" } }, [
+                          _vm._v("Algeria"),
+                        ]),
                       ]
                     ),
                   ]),
@@ -76468,22 +76542,295 @@ var render = function () {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.lastName,
-                          expression: "lastName",
+                          value: _vm.zipCode,
+                          expression: "zipCode",
                         },
                       ],
                       staticClass: "form-control",
                       attrs: { type: "text", placeholder: "ZIP Code" },
-                      domProps: { value: _vm.lastName },
+                      domProps: { value: _vm.zipCode },
                       on: {
                         input: function ($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.lastName = $event.target.value
+                          _vm.zipCode = $event.target.value
                         },
                       },
                     }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("label", [_vm._v("Credit Card Type")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.cardType,
+                            expression: "cardType",
+                          },
+                        ],
+                        staticClass: "custom-select",
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.cardType = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "5" } }, [
+                          _vm._v("Visa"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "6" } }, [
+                          _vm._v("MasterCard"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "7" } }, [
+                          _vm._v("American Express"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "8" } }, [
+                          _vm._v("Discover"),
+                        ]),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("label", [_vm._v("Credit Card Number")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cardNumber,
+                          expression: "cardNumber",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "number", placeholder: "Card Number" },
+                      domProps: { value: _vm.cardNumber },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.cardNumber = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("label", [_vm._v("Card CVV")]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.cardCode,
+                          expression: "cardCode",
+                        },
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "number", placeholder: "Card CVV" },
+                      domProps: { value: _vm.cardCode },
+                      on: {
+                        input: function ($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.cardCode = $event.target.value
+                        },
+                      },
+                    }),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("label", [_vm._v("Expiration Month")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.expirationMonth,
+                            expression: "expirationMonth",
+                          },
+                        ],
+                        staticClass: "custom-select",
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.expirationMonth = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Month"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "01" } }, [
+                          _vm._v("01"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "02" } }, [
+                          _vm._v("02"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "03" } }, [
+                          _vm._v("03"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "04" } }, [
+                          _vm._v("04"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "05" } }, [
+                          _vm._v("05"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "06" } }, [
+                          _vm._v("06"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "07" } }, [
+                          _vm._v("07"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "08" } }, [
+                          _vm._v("08"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "09" } }, [
+                          _vm._v("09"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "10" } }, [
+                          _vm._v("10"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "11" } }, [
+                          _vm._v("11"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "12" } }, [
+                          _vm._v("12"),
+                        ]),
+                      ]
+                    ),
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("label", [_vm._v("Expiration Uear")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.expirationYear,
+                            expression: "expirationYear",
+                          },
+                        ],
+                        staticClass: "custom-select",
+                        on: {
+                          change: function ($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function (o) {
+                                return o.selected
+                              })
+                              .map(function (o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.expirationYear = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                        },
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Year"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2015" } }, [
+                          _vm._v("2015"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2016" } }, [
+                          _vm._v("2016"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2017" } }, [
+                          _vm._v("2017"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2018" } }, [
+                          _vm._v("2018"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2019" } }, [
+                          _vm._v("2019"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2020" } }, [
+                          _vm._v("2020"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2021" } }, [
+                          _vm._v("2021"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2022" } }, [
+                          _vm._v("2022"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2023" } }, [
+                          _vm._v("2023"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2024" } }, [
+                          _vm._v("2024"),
+                        ]),
+                        _vm._v(" "),
+                        _c("option", { attrs: { value: "2025" } }, [
+                          _vm._v("2025"),
+                        ]),
+                      ]
+                    ),
                   ]),
                   _vm._v(" "),
                   _vm._m(1),
@@ -76624,7 +76971,12 @@ var render = function () {
                         },
                       },
                     },
-                    [_vm._v("Place Order")]
+                    [
+                      _vm._v(
+                        "\n                                    Place Order\n                                    "
+                      ),
+                      _c("span", { attrs: { id: "order-spinner" } }),
+                    ]
                   ),
                 ]),
               ]),

@@ -59,7 +59,7 @@ class CartController extends Controller
     }
 
 
-    public function getCartItemsForCheckout()
+    public function getCartItemsForCartPage()
     {
         
         $cartItems = Cart::with('products')->where('user_id', auth()->user()->id)->get(); 

@@ -21,7 +21,7 @@
         },
         methods: {
             async getCartItemsOnPageLoad(){
-                let response = await axios.post('/cart');
+                let response = await axios.post('/tocart');
                 this.itemCount = response.data.items
             }
         },

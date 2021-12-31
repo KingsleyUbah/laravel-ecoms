@@ -27,8 +27,8 @@ Route::get('/cart', [CartController::class, 'getCartPage'])->name('cart');
 Route::get('/checkout', [CartController::class, 'getCheckoutPage'])->name('checkout');
 
 Route::get('/cart/get/items', [CartController::class, 'getCartItemsForCartPage']);
-Route::post('/cart/increment', [CartController::class, 'incrementItemInCheckout']);
-Route::post('/cart/decrement', [CartController::class, 'decrementItemInCheckout']);
+Route::post('/cart/item/increment', [CartController::class, 'incrementItemInCheckout']);
+Route::post('/cart/item/decrement', [CartController::class, 'decrementItemInCheckout']);
 Route::post('/cart/delete/item', [CartController::class, 'deleteItemInCheckout']);
 Route::get('/cart/success', [CartController::class, 'displaySuccess']);
 Route::get('/cart/clear', [CartController::class, 'clearCart']);

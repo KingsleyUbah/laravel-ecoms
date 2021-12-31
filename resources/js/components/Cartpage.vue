@@ -37,16 +37,16 @@
                                                     <p>{{ item.name }}</p>
                                                 </div>
                                             </td>
-                                            <td>${{item.sale_price}}</td>
-                                            <td>
+                                            <td v-if="item.name">${{item.sale_price}}</td>
+                                            <td v-if="item.name">
                                                 <div class="qty">
                                                     <button class="btn-minus" v-on:click.prevent="decrement(item.id)"><i class="fa fa-minus"></i></button>
                                                     <input type="text" :value="item.quantity">
                                                     <button class="btn-plus" v-on:click.prevent="increment(item.id)"><i class="fa fa-plus"></i></button>
                                                 </div>
                                             </td>
-                                            <td>${{item.sale_price}}</td>
-                                            <td><button v-on:click.prevent="deleteItem(item.id)"><i class="fa fa-trash"></i></button></td>
+                                            <td v-if="item.name">${{item.total}}</td>
+                                            <td v-if="item.name"><button v-on:click.prevent="deleteItem(item.id)"><i class="fa fa-trash"></i></button></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="cart-btn">
                                             <button v-on:click.prevent="clearCart()">Clear Cart</button>
-                                            <button href="/checkout">Checkout</button>
+                                            <a href="/checkout">Checkout</a>
                                         </div>
                                     </div>
                                 </div>

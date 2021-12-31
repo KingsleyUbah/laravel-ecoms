@@ -1,6 +1,6 @@
 @extends('layouts.appa')
 
-@section('content')
+@section('checkout-page')
     <checkout-page />
 @endsection
 

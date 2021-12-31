@@ -1,6 +1,6 @@
 @extends('layouts.appa')
 
-@section('content')
+@section('cart-page')
     <cart-page />
 @endsection
 

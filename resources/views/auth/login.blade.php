@@ -1,21 +1,66 @@
 @extends('layouts.appa')
 
-@section('content')
-<div class="container" style="margin:200px;">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+@section('nav')
+<div class="nav">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+            <a href="#" class="navbar-brand">MENU</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <div class="card-body">
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav mr-auto">
+                    <a href="" class="nav-item nav-link active">Home</a>
+                    <a href="" class="nav-item nav-link">Products</a>
+                    <a href="" class="nav-item nav-link">Product Detail</a>
+                    <a href="" class="nav-item nav-link">Cart</a>
+                    <a href="" class="nav-item nav-link">Checkout</a>
+                    <a href="" class="nav-item nav-link">My Account</a>
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
+                        <div class="dropdown-menu">
+                            @guest            
+                            <a href="{{ route('login') }}" class="dropdown-item">Login & Register</a>                                
+                            @endguest
+
+                            @auth
+                            <a href="" class="dropdown-item">Wishlist</a>
+                            <a href="" class="dropdown-item">Logout</a>
+
+                            @endauth                                    
+                            <a href="" class="dropdown-item">Contact Us</
+                        </div>
+                    </div>
+                </div>
+                <div class="navbar-nav ml-auto">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
+                        <div class="dropdown-menu">
+                            <a href="#" class="dropdown-item">Login</a>
+                            <a href="#" class="dropdown-item">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>
+@endsection
+
+@section('login')
+<div class="login">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-9">
+                <div class="login-form">
                     <form method="POST" action="{{ route('login') }}">
-                        @csrf
+                    @csrf
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
+                        <div class="row">
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                <label>E-mail / Username</label>
+                                <input id="email" class="form-control @error('email') is-invalid @enderror" type="email" placeholder="E-mail / Username" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -23,13 +68,9 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                <label>Password</label>
+                                <input id="password" class="form-control @error('password') is-invalid @enderror" type="password" placeholder="Password" name="password" required autocomplete="current-password">
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -37,25 +78,14 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                            <div class="col-md-12">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <label class="custom-control-label" for="remember">Keep me signed in</label>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
+                            <div class="col-md-12">
+                                <button class="btn" type="submit">Submit</button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -71,3 +101,4 @@
     </div>
 </div>
 @endsection
+
