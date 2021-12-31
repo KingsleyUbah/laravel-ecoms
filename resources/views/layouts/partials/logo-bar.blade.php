@@ -17,10 +17,7 @@
                     <div class="col-md-3">
                         @auth
                         <div class="user">
-                            <a href="" class="btn wishlist">
-                                <i class="fa fa-heart"></i>
-                                <span>(0)</span>
-                            </a>
+                            <wishlist />
                             <cart />
                         </div>
                         @endauth

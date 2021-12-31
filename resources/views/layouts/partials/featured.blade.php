@@ -29,6 +29,8 @@
                             </div>
                             <div class="product-price">
                                 <h3><span>$</span>{{$cloth->sale_price}}</h3>
+                                <add-to-wishlist-button product-id="{{ $cloth->id }}"
+                                user-id="{{ auth()->user()->id ?? 0 }}" />
                                 <add-to-cart-button product-id="{{ $cloth->id }}"
                                 user-id="{{ auth()->user()->id ?? 0 }}" />
                             </div>

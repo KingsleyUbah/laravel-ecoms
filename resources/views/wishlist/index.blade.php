@@ -48,7 +48,7 @@
 </div>
 @endsection
 
-@section('cart-page')
-    <cart-page />
+@section('wishlist-page')
+    <wishlist-page />
 @endsection
 

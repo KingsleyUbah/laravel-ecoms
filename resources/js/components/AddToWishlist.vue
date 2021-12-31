@@ -1,5 +1,5 @@
 <template>
-    <a class="btn" v-on:click.prevent="addProductToCart()"><i class="fa fa-shopping-cart"></i></a>
+    <a class="btn" v-on:click.prevent="addProductToWishlist()"><i class="fa fa-heart"></i></a>
 </template>
 
 <script>
@@ -11,19 +11,19 @@
         },
         props: ['productId', 'userId'],
         methods: {
-            async addProductToCart() {
+            async addProductToWishlist() {
 
                 // if user is not logged in
                 if(this.userId == 0) {
-                    this.$toastr.e('You need to login to add this product to the cart');
+                    this.$toastr.e('You need to login to add this product to your wishlist');
                     return;
                 }
 
-                let response = await axios.post('/tocart', {
+                let response = await axios.post('/towishlist', {
                     'product_id': Number(this.productId)
                 })
 
-                this.$root.$emit('changeInCart', response.data.items)
+                this.$root.$emit('changeInWishlist', response.data.list)
             }
         },
         mounted() {

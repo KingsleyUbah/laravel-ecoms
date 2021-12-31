@@ -51,7 +51,15 @@
         <!-- End Cart page -->
 
         <!-- Cart page -->
+        @yield('wishlist-page')
+        <!-- End Cart page -->
+
+        <!-- Cart page -->
         @yield('checkout-page')
+        <!-- End Cart page -->
+
+        <!-- Cart page -->
+        @yield('contact-page')
         <!-- End Cart page -->
         
         <!-- Main Slider Start -->
