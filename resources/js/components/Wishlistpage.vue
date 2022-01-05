@@ -116,7 +116,7 @@
             console.log('Cart mounted.')
         },
 		created() {
-			this.getWishlistItems();
+            this.getWishlistItems();	
 		}
     }
 </script>

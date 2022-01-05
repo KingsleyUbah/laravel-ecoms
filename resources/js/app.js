@@ -37,6 +37,7 @@ Vue.component('cart-page', require('./components/Cartpage.vue').default);
 Vue.component('wishlist-page', require('./components/Wishlistpage.vue').default);
 Vue.component('checkout-page', require('./components/Checkout.vue').default);
 Vue.component('products', require('./components/Products.vue').default);
+Vue.component('products-view', require('./components/ProductsView.vue').default);
 Vue.component('Page', Page);
 
 

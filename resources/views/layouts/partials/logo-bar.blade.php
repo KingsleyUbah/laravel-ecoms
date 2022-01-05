@@ -14,11 +14,14 @@
                             <button><i class="fa fa-search"></i></button>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" style="display: flex; justify-content: flex-end;">
                         @auth
                         <div class="user">
-                            <wishlist />
                             <cart />
+                        </div>
+
+                        <div class="user">
+                            <wishlist />
                         </div>
                         @endauth
                     </div>

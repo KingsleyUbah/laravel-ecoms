@@ -49,6 +49,8 @@
 @endsection
 
 @section('checkout-page')
-    <checkout-page />
+    <div>
+        <checkout-page />
+    </div>
 @endsection
 

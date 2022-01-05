@@ -45,7 +45,7 @@
 
                             <div class="col-md-6">
                                 <label>Retype Password</label>
-                                <input id="password_confirm" class="form-control" name="password-confirmation" type="password" placeholder="Confirm Password" required autocomplete="new-password">
+                                <input id="password_confirm" class="form-control" name="password_confirmation" type="password" placeholder="Confirm Password" required autocomplete="new-password">
                             </div>
 
                             <div class="col-md-12">

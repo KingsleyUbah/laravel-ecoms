@@ -38,7 +38,7 @@ Route::post('/cart/item/increment', [CartController::class, 'incrementItemInChec
 Route::post('/cart/item/decrement', [CartController::class, 'decrementItemInCheckout']);
 Route::post('/cart/delete/item', [CartController::class, 'deleteItemInCheckout']);
 
-Route::get('/wishlist/get/items', [WishlistController::class, 'getItemsForWishlistPage']);
+Route::get('/wishlist/get/items', [WishlistController::class, 'getItemsForWishlistPage'])->middleware('auth');
 Route::post('/wishlist/item/increment', [WishlistController::class, 'incrementItemInWishlist']);
 Route::post('/wishlist/item/decrement', [WishlistController::class, 'decrementItemInWishlist']);
 Route::post('/wishlist/delete/item', [WishlistController::class, 'deleteItemInWishlist']);
@@ -52,3 +52,6 @@ Route::post('/process/user/payment', [CartController::class, 'processPayment']);
 
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/products/get', [ProductController::class, 'getProducts']);
+Route::get('/products/single', [ProductController::class, 'getProductPage']);
+
+Route::get('/products/{id}', [ProductController::class, 'showProductPage'])->name('product.single');

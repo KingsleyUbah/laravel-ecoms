@@ -63,7 +63,7 @@
             return {
                 allProducts: [],
                 userId: '',
-                total: 6,
+                total: 9,
                 pageInfo: null,
                 isCategorized: false,
                 activeCategory: '',

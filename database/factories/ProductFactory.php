@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             'price' => $price,     
             'discount' => $this->faker->numberBetween($min = 0, $max = 100),
             'sale_price' => $price - 50,
-            'category' => $this->faker->randomElement($array = array ('clothing','shoes', 'jewellery', 'kids'))
+            'category' => $this->faker->randomElement($array = array ('fashion-beauty','kids-babies', 'men-women', 'gadgets', 'electronics'))
         ];
     }
 }

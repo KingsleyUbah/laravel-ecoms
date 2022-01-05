@@ -49,6 +49,8 @@
 @endsection
 
 @section('wishlist-page')
-    <wishlist-page />
+    <div>
+        <wishlist-page />
+    </div>
 @endsection
 

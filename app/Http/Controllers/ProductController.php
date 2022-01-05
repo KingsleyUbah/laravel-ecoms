@@ -98,7 +98,22 @@ class ProductController extends Controller
 
         return [
             'products' => $products,
-            'userId' => auth()->user()->id
+            'userId' => auth()->user()->id ?? 0
         ];
+    }
+
+    public function getProductPage(Request $request) 
+    {
+        if($request->has('id')) 
+        {
+            $product = Product::find($request->id);
+        }
+        
+        return redirect()->route('product.single', $product);
+    }
+
+    public function showProductPage(Product $product) 
+    {
+        return view('product.show', compact($product));
     }
 }

@@ -11,25 +11,30 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a href="" class="nav-item nav-link active">Home</a>
+                    <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                     <a href="" class="nav-item nav-link">Products</a>
                     <a href="" class="nav-item nav-link">Product Detail</a>
                     <a href="" class="nav-item nav-link">Cart</a>
                     <a href="" class="nav-item nav-link">Checkout</a>
                     <a href="" class="nav-item nav-link">My Account</a>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">More Pages</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
                         <div class="dropdown-menu">
                             @guest            
-                            <a href="{{ route('login') }}" class="dropdown-item">Login & Register</a>                                
+                            <a href="{{ route('login') }}" class="dropdown-item">Login</a>
+                            <a href="{{ route('register') }}" class="dropdown-item">Register</a> 
                             @endguest
 
                             @auth
-                            <a href="" class="dropdown-item">Wishlist</a>
-                            <a href="" class="dropdown-item">Logout</a>
+                            <a href="{{ route('wishlist') }}" class="dropdown-item">Wishlist</a>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                            </form>
 
                             @endauth                                    
-                            <a href="" class="dropdown-item active">Contact Us</
+                            <a href="" class="dropdown-item">Contact Us</
                         </div>
                     </div>
                 </div>
@@ -37,8 +42,8 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
                         <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Login</a>
-                            <a href="#" class="dropdown-item">Register</a>
+                            <a href="{{ route('login') }}" class="dropdown-item">Login</a>
+                            <a href="{{ route('register') }}" class="dropdown-item">Register</a>
                         </div>
                     </div>
                 </div>

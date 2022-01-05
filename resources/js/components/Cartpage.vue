@@ -135,7 +135,7 @@
 			async getCartItems() {
 				let response = await axios.get('/cart/get/items');
 				this.items = response.data 
-				console.log(this.items);
+				console.log(response.data);
 			},
 		},
         mounted() {
