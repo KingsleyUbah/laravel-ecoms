@@ -1,70 +1,38 @@
-<div class="footer">
-    <div class="container-fluid">
+<div  id="footerSection">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Get in Touch</h2>
-                    <div class="contact-info">
-                        <p><i class="fa fa-map-marker"></i>123 E Store, Los Angeles, USA</p>
-                        <p><i class="fa fa-envelope"></i>email@example.com</p>
-                        <p><i class="fa fa-phone"></i>+123-456-7890</p>
-                    </div>
-                </div>
+            <div class="span3">
+                <h5>ACCOUNT</h5>
+                <a href="login.html">YOUR ACCOUNT</a>
+                <a href="login.html">PERSONAL INFORMATION</a> 
+                <a href="login.html">ADDRESSES</a> 
+                <a href="login.html">DISCOUNT</a>  
+                <a href="login.html">ORDER HISTORY</a>
             </div>
-            
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Follow Us</h2>
-                    <div class="contact-info">
-                        <div class="social">
-                            <a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-linkedin-in"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a>
-                            <a href=""><i class="fab fa-youtube"></i></a>
-                        </div>
-                    </div>
-                </div>
+            <div class="span3">
+                <h5>INFORMATION</h5>
+                <a href="contact.html">CONTACT</a>  
+                <a href="register.html">REGISTRATION</a>  
+                <a href="legal_notice.html">LEGAL NOTICE</a>  
+                <a href="tac.html">TERMS AND CONDITIONS</a> 
+                <a href="faq.html">FAQ</a>
             </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Company Info</h2>
-                    <ul>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Condition</a></li>
-                    </ul>
-                </div>
+            <div class="span3">
+                <h5>OUR OFFERS</h5>
+                <a href="#">NEW PRODUCTS</a> 
+                <a href="#">TOP SELLERS</a>  
+                <a href="special_offer.html">SPECIAL OFFERS</a>  
+                <a href="#">MANUFACTURERS</a> 
+                <a href="#">SUPPLIERS</a> 
             </div>
-
-            <div class="col-lg-3 col-md-6">
-                <div class="footer-widget">
-                    <h2>Purchase Info</h2>
-                    <ul>
-                        <li><a href="#">Pyament Policy</a></li>
-                        <li><a href="#">Shipping Policy</a></li>
-                        <li><a href="#">Return Policy</a></li>
-                    </ul>
-                </div>
-            </div>
+            <div id="socialMedia" class="span3 pull-right">
+                <h5>SOCIAL MEDIA </h5>
+                <a href="#"><img width="60" height="60" src="themes/images/facebook.png" title="facebook" alt="facebook"/></a>
+                <a href="#"><img width="60" height="60" src="themes/images/twitter.png" title="twitter" alt="twitter"/></a>
+                <a href="#"><img width="60" height="60" src="themes/images/youtube.png" title="youtube" alt="youtube"/></a>
+            </div> 
         </div>
-        
-        <div class="row payment align-items-center">
-            <div class="col-md-6">
-                <div class="payment-method">
-                    <h2>We Accept:</h2>
-                    <img src="img/payment-method.png" alt="Payment Method" />
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="payment-security">
-                    <h2>Secured By:</h2>
-                    <img src="img/godaddy.svg" alt="Payment Security" />
-                    <img src="img/norton.svg" alt="Payment Security" />
-                    <img src="img/ssl.svg" alt="Payment Security" />
-                </div>
-            </div>
-        </div>
+        <p class="pull-right">&copy; Bootshop</p>
     </div>
+    <!-- Container End -->
 </div>

@@ -1,88 +1,182 @@
 <template>
-    <div>
-         <!-- Breadcrumb Start -->
-        <div class="breadcrumb-wrap">
-            <div class="container-fluid">
-                <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Products</a></li>
-                    <li class="breadcrumb-item active">Cart</li>
-                </ul>
-            </div>
-        </div>
-        <!-- Breadcrumb End -->
-        
-        <!-- Cart Start -->
-        <div class="cart-page">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="cart-page-inner">
-                            <div class="table-responsive">
-                                <table class="table table-bordered">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th>Product</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                            <th>Total</th>
-                                            <th>Remove</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="align-middle">
-                                        <tr v-for="item in items" :key="item.id">
-                                            <td v-if="item.name">
-                                                <div class="img">
-                                                    <a href="#"><img :src="item.image" alt="Image"></a>
-                                                    <p>{{ item.name }}</p>
-                                                </div>
-                                            </td>
-                                            <td v-if="item.name">${{item.sale_price}}</td>
-                                            <td v-if="item.name">
-                                                <div class="qty">
-                                                    <button class="btn-minus" v-on:click.prevent="decrement(item.id)"><i class="fa fa-minus"></i></button>
-                                                    <input type="text" :value="item.quantity">
-                                                    <button class="btn-plus" v-on:click.prevent="increment(item.id)"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </td>
-                                            <td v-if="item.name">${{item.total}}</td>
-                                            <td v-if="item.name"><button v-on:click.prevent="deleteItem(item.id)"><i class="fa fa-trash"></i></button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+    <div id="mainBody">
+        <div class="container">
+            <div class="row">
+                 <!-- Sidebar ================================================== -->
+                <div id="sidebar" class="span3">
+                    <div class="well well-small"><a id="myCart" href="product_summary.html"><img src="themes/images/ico-cart.png" alt="cart">3 Items in your cart  <span class="badge badge-warning pull-right">$155.00</span></a></div>
+                    <ul id="sideManu" class="nav nav-tabs nav-stacked">
+                        <li class="subMenu open"><a> ELECTRONICS [230]</a>
+                            <ul>
+                            <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Cameras (100) </a></li>
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Computers, Tablets & laptop (30)</a></li>
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Sound & Vision (15)</a></li>
+                            </ul>
+                        </li>
+                        <li class="subMenu"><a> CLOTHES [840] </a>
+                        <ul style="display:none">
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Women's Clothing (45)</a></li>
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Women's Shoes (8)</a></li>												
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Women's Hand Bags (5)</a></li>	
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Men's Clothings  (45)</a></li>
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Men's Shoes (6)</a></li>												
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Kids Clothing (5)</a></li>												
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Kids Shoes (3)</a></li>												
+                        </ul>
+                        </li>
+                        <li class="subMenu"><a>FOOD AND BEVERAGES [1000]</a>
+                            <ul style="display:none">
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Angoves  (35)</a></li>
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Bouchard Aine & Fils (8)</a></li>												
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>French Rabbit (5)</a></li>	
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Louis Bernard  (45)</a></li>
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>BIB Wine (Bag in Box) (8)</a></li>												
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Other Liquors & Wine (5)</a></li>												
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Garden (3)</a></li>												
+                            <li><a href="products.html"><i class="icon-chevron-right"></i>Khao Shong (11)</a></li>												
+                        </ul>
+                        </li>
+                        <li><a href="products.html">HEALTH & BEAUTY [18]</a></li>
+                        <li><a href="products.html">SPORTS & LEISURE [58]</a></li>
+                        <li><a href="products.html">BOOKS & ENTERTAINMENTS [14]</a></li>
+                    </ul>
+                    <br/>
+                    <div class="thumbnail">
+                        <img src="themes/images/products/panasonic.jpg" alt="Bootshop panasonoc New camera"/>
+                        <div class="caption">
+                        <h5>Panasonic</h5>
+                            <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+                        </div>
+                    </div><br/>
+                        <div class="thumbnail">
+                            <img src="themes/images/products/kindle.png" title="Bootshop New Kindel" alt="Bootshop Kindel">
+                            <div class="caption">
+                            <h5>Kindle</h5>
+                                <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a></h4>
+                            </div>
+                        </div><br/>
+                        <div class="thumbnail">
+                            <img src="themes/images/payment_methods.png" title="Bootshop Payment Methods" alt="Payments Methods">
+                            <div class="caption">
+                            <h5>Payment Methods</h5>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="cart-page-inner">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="coupon">
-                                        <input type="text" placeholder="Coupon Code">
-                                        <button>Apply Code</button>
+                </div>
+                <!-- Sidebar end=============================================== -->
+                <div class="span9">
+                    <ul class="breadcrumb">
+                        <li><a href="index.html">Home</a> <span class="divider">/</span></li>
+                        <li class="active"> SHOPPING CART</li>
+                    </ul>
+                    <h3>  SHOPPING CART [ <small>3 Item(s) </small>]<a href="products.html" class="btn btn-large pull-right"><i class="icon-arrow-left"></i> Continue Shopping </a></h3>	
+                    <hr class="soft"/>
+                                    
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                            <th>Product</th>
+                            <th>Description</th>
+                            <th>Quantity/Update</th>
+                            <th>Price</th>
+                            <th>Discount</th>
+                            <th>Tax</th>
+                            <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in items" :key="item.id">
+                                <td v-if="item.name"> 
+                                    <img width="60" :src="item.image" alt=""/>
+                                </td>
+                                <td v-if="item.name">
+                                    MASSA AST<br/>{{item.description}}
+                                </td>
+                                <td v-if="item.name">
+                                    <div class="input-append">                                                                        
+                                        <button class="btn" type="button" v-on:click.prevent="decrement(item.id)"><i class="icon-minus"></i></button>
+                                        <input type="text" :value="item.quantity" class="span1" style="max-width:24px" id="appendedInputButtons">
+                                        <button class="btn" type="button" v-on:click.prevent="increment(item.id)"><i class="icon-plus"></i></button>
+                                        <button class="btn btn-danger" type="button" v-on:click.prevent="deleteItem(item.id)"><i class="icon-remove icon-white"></i></button>				
                                     </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="cart-summary">
-                                        <div class="cart-content">
-                                            <h1>Cart Summary</h1>
-                                            <p>Sub Total<span>${{items.totalAmount}}</span></p>
-                                            <p>Shipping Cost<span>$0</span></p>
-                                            <h2>Grand Total<span>${{items.totalAmount}}</span></h2>
+                                </td>
+                                <td>${{item.sale_price}}</td>
+                                <td>$50.00</td>
+                                <td>$0.00</td>
+                                <td>${{item.sale_price * item.quantity}}</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="6" style="text-align:right">Total Price:	</td>
+                                <td> ${{items.totalAmount}}</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="6" style="text-align:right">Total Discount:	</td>
+                                <td> ${{50 * items.length}}</td>
+                            </tr>
+                            <tr>
+                            <td colspan="6" style="text-align:right">Total Tax:	</td>
+                            <td> $0.00</td>
+                            </tr>
+                            <tr>
+                            <td colspan="6" style="text-align:right"><strong>TOTAL</strong></td>
+                            <td class="label label-important" style="display:block"> <strong> ${{items.totalAmount}} </strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                            
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td> 
+                                    <form class="form-horizontal">
+                                        <div class="control-group">
+                                            <label class="control-label"><strong> VOUCHERS CODE: </strong> </label>
+                                            <div class="controls">
+                                                <input type="text" class="input-medium" placeholder="CODE">
+                                                <button type="submit" class="btn"> ADD </button>
+                                            </div>
                                         </div>
-                                        <div class="cart-btn">
-                                            <button v-on:click.prevent="clearCart()">Clear Cart</button>
-                                            <a href="/checkout">Checkout</a>
+                                    </form>
+                                </td>
+                            </tr>                        
+                        </tbody>
+                    </table>
+                        
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>CONFIRM YOUR SHIPPING ADDRESS</th>
+                        </tr>
+                        <tr> 
+                            <td>
+                                <form class="form-horizontal">
+                                    <div class="control-group">
+                                        <label class="control-label" for="inputCountry">Country </label>
+                                        <div class="controls">
+                                            <input type="text" id="inputCountry" placeholder="Country">
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="inputPost">Post Code/ Zipcode </label>
+                                        <div class="controls">
+                                            <input type="text" id="inputPost" placeholder="Postcode">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls">
+                                            <button type="submit" class="btn">ESTIMATE </button>
+                                        </div>
+                                    </div>
+                                </form>				  
+                            </td>
+                        </tr>
+                    </table>		
+                    <a href="products.html" class="btn btn-large"><i class="icon-arrow-left"></i> Continue Shopping </a>
+                    <a href="login.html" class="btn btn-large pull-right">Next <i class="icon-arrow-right"></i></a>            
                 </div>
             </div>
         </div>
-        <!-- Cart End -->
     </div>
 </template>
 

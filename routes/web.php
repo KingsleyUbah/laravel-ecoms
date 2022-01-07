@@ -30,8 +30,12 @@ Route::get('/cart', [CartController::class, 'getCartPage'])->name('cart');
 Route::get('/wishlist', [WishlistController::class, 'getWishlistPage'])->name('wishlist');
 
 Route::get('/contact-us', [ContactController::class, 'getContactPage'])->name('contact');
+Route::get('/faq', [ContactController::class, 'getFaqPage'])->name('faq');
+Route::get('/legal', [ContactController::class, 'getLegalPage'])->name('legal');
+Route::get('/terms-and-conditions', [ContactController::class, 'getTacPage'])->name('terms');
 
 Route::get('/checkout', [CartController::class, 'getCheckoutPage'])->name('checkout');
+Route::get('/offers', [ProductController::class, 'getDiscountPage'])->name('offers');
 
 Route::get('/cart/get/items', [CartController::class, 'getCartItemsForCartPage']);
 Route::post('/cart/item/increment', [CartController::class, 'incrementItemInCheckout']);

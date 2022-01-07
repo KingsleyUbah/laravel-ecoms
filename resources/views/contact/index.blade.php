@@ -1,133 +1,60 @@
-@extends('layouts.appa')
+@extends('layouts.appi')
 
-@section('nav')
-<div class="nav">
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-            <a href="#" class="navbar-brand">MENU</a>
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                <div class="navbar-nav mr-auto">
-                    <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
-                    <a href="" class="nav-item nav-link">Products</a>
-                    <a href="" class="nav-item nav-link">Product Detail</a>
-                    <a href="" class="nav-item nav-link">Cart</a>
-                    <a href="" class="nav-item nav-link">Checkout</a>
-                    <a href="" class="nav-item nav-link">My Account</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">More Pages</a>
-                        <div class="dropdown-menu">
-                            @guest            
-                            <a href="{{ route('login') }}" class="dropdown-item">Login</a>
-                            <a href="{{ route('register') }}" class="dropdown-item">Register</a> 
-                            @endguest
-
-                            @auth
-                            <a href="{{ route('wishlist') }}" class="dropdown-item">Wishlist</a>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
-
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                            </form>
-
-                            @endauth                                    
-                            <a href="" class="dropdown-item">Contact Us</
-                        </div>
-                    </div>
-                </div>
-                <div class="navbar-nav ml-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                        <div class="dropdown-menu">
-                            <a href="{{ route('login') }}" class="dropdown-item">Login</a>
-                            <a href="{{ route('register') }}" class="dropdown-item">Register</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-    </div>
-</div>
-@endsection
-
-@section('contact-page')
-<!-- Breadcrumb Start -->
-<div class="breadcrumb-wrap">
-    <div class="container-fluid">
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item"><a href="#">Products</a></li>
-            <li class="breadcrumb-item active">Contact</li>
-        </ul>
-    </div>
-</div>
-<!-- Breadcrumb End -->
-        
-<!-- Contact Start -->
-<div class="contact">
-    <div class="container-fluid">
+@section('contact-us')
+<div id="mainBody">
+    <div class="container">
+        <hr class="soften">
+        <h1>Visit us</h1>
+        <hr class="soften"/>	
         <div class="row">
-            <div class="col-lg-4">
-                <div class="contact-info">
-                    <h2>Our Office</h2>
-                    <h3><i class="fa fa-map-marker"></i>123 Office, Los Angeles, CA, USA</h3>
-                    <h3><i class="fa fa-envelope"></i>office@example.com</h3>
-                    <h3><i class="fa fa-phone"></i>+123-456-7890</h3>
-                    <div class="social">
-                        <a href=""><i class="fab fa-twitter"></i></a>
-                        <a href=""><i class="fab fa-facebook-f"></i></a>
-                        <a href=""><i class="fab fa-linkedin-in"></i></a>
-                        <a href=""><i class="fab fa-instagram"></i></a>
-                        <a href=""><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
+            <div class="span4">
+                <h4>Contact Details</h4>
+                <p>	18 Fresno,<br/> CA 93727, USA
+                    <br/><br/>
+                    info@bootsshop.com<br/>
+                    ﻿Tel 123-456-6780<br/>
+                    Fax 123-456-5679<br/>
+                    web:bootsshop.com
+                </p>		
             </div>
-            <div class="col-lg-4">
-                <div class="contact-info">
-                    <h2>Our Store</h2>
-                    <h3><i class="fa fa-map-marker"></i>123 Store, Los Angeles, CA, USA</h3>
-                    <h3><i class="fa fa-envelope"></i>store@example.com</h3>
-                    <h3><i class="fa fa-phone"></i>+123-456-7890</h3>
-                    <div class="social">
-                        <a href=""><i class="fab fa-twitter"></i></a>
-                        <a href=""><i class="fab fa-facebook-f"></i></a>
-                        <a href=""><i class="fab fa-linkedin-in"></i></a>
-                        <a href=""><i class="fab fa-instagram"></i></a>
-                        <a href=""><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
+                
+            <div class="span4">
+                <h4>Opening Hours</h4>
+                <h5> Monday - Friday</h5>
+                <p>09:00am - 09:00pm<br/><br/></p>
+                <h5>Saturday</h5>
+                <p>09:00am - 07:00pm<br/><br/></p>
+                <h5>Sunday</h5>
+                <p>12:30pm - 06:00pm<br/><br/></p>
             </div>
-            <div class="col-lg-4">
-                <div class="contact-form">
-                    <form>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" placeholder="Your Name" />
-                            </div>
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" placeholder="Your Email" />
-                            </div>
+            <div class="span4">
+                <h4>Email Us</h4>
+                <form class="form-horizontal">
+                    <fieldset>
+                        <div class="control-group">    
+                            <input type="text" placeholder="name" class="input-xlarge"/>                    
                         </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Subject" />
+                        <div class="control-group">                    
+                            <input type="text" placeholder="email" class="input-xlarge"/>                    
                         </div>
-                        <div class="form-group">
-                            <textarea class="form-control" rows="5" placeholder="Message"></textarea>
+                        <div class="control-group">                    
+                            <input type="text" placeholder="subject" class="input-xlarge"/>                    
                         </div>
-                        <div><button class="btn" type="submit">Send Message</button></div>
-                    </form>
-                </div>
+                        <div class="control-group">
+                            <textarea rows="3" id="textarea" class="input-xlarge"></textarea>                    
+                        </div>
+                        <button class="btn btn-large" type="submit">Send Messages</button>
+                    </fieldset>
+                </form>
             </div>
-            <div class="col-lg-12">
-                <div class="contact-map">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.733248043701!2d-118.24532098539802!3d34.05071312525937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c648fa1d4803%3A0xdec27bf11f9fd336!2s123%20S%20Los%20Angeles%20St%2C%20Los%20Angeles%2C%20CA%2090012%2C%20USA!5e0!3m2!1sen!2sbd!4v1585634930544!5m2!1sen!2sbd" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-                </div>
+        </div>
+
+        <div class="row">
+            <div class="span12">
+            <iframe style="width:100%; height:300; border: 0px" scrolling="no" src="https://maps.google.co.uk/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=18+California,+Fresno,+CA,+United+States&amp;aq=0&amp;oq=18+California+united+state&amp;sll=39.9589,-120.955336&amp;sspn=0.007114,0.016512&amp;ie=UTF8&amp;hq=&amp;hnear=18,+Fresno,+California+93727,+United+States&amp;t=m&amp;ll=36.732762,-119.695787&amp;spn=0.017197,0.100336&amp;z=14&amp;output=embed"></iframe><br />
+            <small><a href="https://maps.google.co.uk/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=18+California,+Fresno,+CA,+United+States&amp;aq=0&amp;oq=18+California+united+state&amp;sll=39.9589,-120.955336&amp;sspn=0.007114,0.016512&amp;ie=UTF8&amp;hq=&amp;hnear=18,+Fresno,+California+93727,+United+States&amp;t=m&amp;ll=36.732762,-119.695787&amp;spn=0.017197,0.100336&amp;z=14" style="color:#0000FF;text-align:left">View Larger Map</a></small>
             </div>
         </div>
     </div>
 </div>
-<!-- Contact End -->
 @endsection

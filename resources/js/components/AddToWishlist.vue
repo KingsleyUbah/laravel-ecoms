@@ -1,5 +1,5 @@
 <template>
-    <a class="btn" v-on:click.prevent="addProductToWishlist()"><i class="fa fa-heart"></i></a>
+    <a class="btn" v-on:click.prevent="addProductToWishlist()">Add to <i class="fa fa-heart"></i></a>
 </template>
 
 <script>
@@ -23,7 +23,12 @@
                     'product_id': Number(this.productId)
                 })
 
+                if(response.data) {
+                    this.$toastr.s('Product added to wishlist!');                    
+                }
+
                 this.$root.$emit('changeInWishlist', response.data.list)
+                
             }
         },
         mounted() {

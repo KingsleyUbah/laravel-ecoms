@@ -1,5 +1,5 @@
 <template>
-    <a class="btn" v-on:click.prevent="addProductToCart()"><i class="fa fa-shopping-cart"></i></a>
+    <a class="btn" v-on:click.prevent="addProductToCart()">Add to <i class="icon-shopping-cart"></i></a>
 </template>
 
 <script>
